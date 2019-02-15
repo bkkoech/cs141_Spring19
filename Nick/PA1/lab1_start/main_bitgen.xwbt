@@ -1,0 +1,8 @@
+INTSTYLE=ise
+INFILE=Z:\CS141 - Computer Architecture\Programming Assignments\PA1\lab1_start\main.ncd
+OUTFILE=Z:\CS141 - Computer Architecture\Programming Assignments\PA1\lab1_start\main.bit
+FAMILY=Spartan6
+PART=xc6slx45-3csg324
+WORKINGDIR=Z:\CS141 - Computer Architecture\Programming Assignments\PA1\lab1_start
+LICENSE=WebPack
+USER_INFO=207362390_1777509885_0_951

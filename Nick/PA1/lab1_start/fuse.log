@@ -1,0 +1,10 @@
+Running: C:\Xilinx\14.7\ISE_DS\ISE\bin\nt\unwrapped\fuse.exe -intstyle ise -incremental -lib unisims_ver -lib unimacro_ver -lib xilinxcorelib_ver -lib secureip -o Z:/CS141 - Computer Architecture/Programming Assignments/PA1/lab1_start/testbench_isim_beh.exe -prj Z:/CS141 - Computer Architecture/Programming Assignments/PA1/lab1_start/testbench_beh.prj work.testbench work.glbl 
+ISim P.20131013 (signature 0x8ef4fb42)
+Number of CPUs detected in this system: 2
+Turning on mult-threading, number of parallel sub-compilation jobs: 4 
+Determining compilation order of HDL files
+Analyzing Verilog file "Z:/CS141 - Computer Architecture/Programming Assignments/PA1/lab1_start/main.v" into library work
+Analyzing Verilog file "Z:/CS141 - Computer Architecture/Programming Assignments/PA1/lab1_start/testbench.v" into library work
+ERROR:HDLCompiler:806 - "Z:/CS141 - Computer Architecture/Programming Assignments/PA1/lab1_start/testbench.v" Line 27: Syntax error near "~".
+ERROR:HDLCompiler:598 - "Z:/CS141 - Computer Architecture/Programming Assignments/PA1/lab1_start/testbench.v" Line 6: Module <testbench> ignored due to previous errors.
+Verilog file Z:/CS141 - Computer Architecture/Programming Assignments/PA1/lab1_start/testbench.v ignored due to errors
