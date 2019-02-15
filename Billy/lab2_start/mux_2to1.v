@@ -16,7 +16,7 @@ module mux_2to1(X,Y,S,Z); // declare new module
 	input wire S; // select signal wire 
 	output wire [31:0] Z; // one 32 bit output bus
 	
-	assign Z = S ? Y : X;
+	assign Z = S ? Y : X; // mux
 
 
 endmodule // end of the module

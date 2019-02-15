@@ -38,7 +38,7 @@ module test_alu;
 		// Initialize Inputs
 		X = 0;
 		Y = 0;
-		op_code = 0
+		op_code = 0;
 		
 		// YOUR CODE HERE
 		// loop through all important test vectors

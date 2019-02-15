@@ -21,7 +21,7 @@ module mux_4to1(A,B,C,D,S,Z);
    wire mux_0_out , mux_1_out;
 	mux_2to1 MUX0 (.X(A) , .Y(B) , .S(S[0]) , .Z(mux_0_out));
 	mux_2to1 MUX1 (.X(C) , .Y(D) , .S(S[0]) , .Z(mux_1_out));
-	mux 2to1 MUX2 (.X(mux_0_out) , .Y(mux_1_out) , . S(S[1]) , .Z(Z));
+	mux_2to1 MUX2 (.X(mux_0_out) , .Y(mux_1_out) , . S(S[1]), .Z(Z));
 	
 endmodule
 `default_nettype wire //some Xilinx IP requires that the default_nettype be set to wire
