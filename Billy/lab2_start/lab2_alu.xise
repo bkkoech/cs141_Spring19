@@ -25,6 +25,14 @@
       <association xil_pn:name="PostRouteSimulation" xil_pn:seqID="13"/>
       <association xil_pn:name="PostTranslateSimulation" xil_pn:seqID="13"/>
     </file>
+    <file xil_pn:name="mux_2to1.v" xil_pn:type="FILE_VERILOG">
+      <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="6"/>
+      <association xil_pn:name="Implementation" xil_pn:seqID="6"/>
+    </file>
+    <file xil_pn:name="mux_4to1.v" xil_pn:type="FILE_VERILOG">
+      <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="7"/>
+      <association xil_pn:name="Implementation" xil_pn:seqID="7"/>
+    </file>
   </files>
 
   <autoManagedFiles>
