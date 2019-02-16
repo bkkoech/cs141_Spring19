@@ -122,8 +122,14 @@ module test_alu;
 			end
 			`ALU_OP_ADD: begin
 			//only executes when the op code is 0101 (ADD)
+				//check if addition works
 				if( Z !== X+Y ) begin
 					$display("ERROR: ADD:  op_code = %b, X = %h, Y = %h, Z = %h", op_code, X, Y, Z);
+					error = error + 1;
+				end
+				//check if overflow works
+				if( (Z > 4294967295) & (overflow !== 1)) begin
+					$display("ERROR: ADD overflow failed:  op_code = %b, X = %h, Y = %h, Z = %h", op_code, X, Y, Z);
 					error = error + 1;
 				end
 			end

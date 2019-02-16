@@ -11,10 +11,12 @@
 //////////////////////////////////////////////////////////////////////////////////
 module mux_2to1(X,Y,S,Z); // declare new module 
 
+	parameter N = 32; // 32 bits by default
+	
 	//port definitions - customize for different bit widths
-	input wire [31:0] X, Y; //two 32 bit input buses
+	input wire [N-1:0] X, Y; //two N bit input buses
 	input wire S; // select signal wire 
-	output wire [31:0] Z; // one 32 bit output bus
+	output wire [N-1:0] Z; // one N bit output bus
 	
 	assign Z = S ? Y : X; // mux
 

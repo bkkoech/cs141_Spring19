@@ -15,13 +15,13 @@ Analyzing Verilog file "Z:/Shared files/Billy/lab2_start/test_alu.v" into librar
 Analyzing Verilog file "C:/Xilinx/14.7/ISE_DS/ISE//verilog/src/glbl.v" into library work
 Starting static elaboration
 Completed static elaboration
-Fuse Memory Usage: 103096 KB
-Fuse CPU Usage: 499 ms
+Fuse Memory Usage: 102776 KB
+Fuse CPU Usage: 531 ms
 Compiling module one_bit_full_adder
 Compiling module adder_32_bit
-Compiling module mux_2to1
-Compiling module mux_4to1
-Compiling module mux_8to1
+Compiling module mux_2to1(N=32)
+Compiling module mux_4to1(N=32)
+Compiling module mux_8to1(N=32)
 Compiling module mux_16to1
 Compiling module alu
 Compiling module test_alu
@@ -29,5 +29,5 @@ Compiling module glbl
 Time Resolution for simulation is 1ps.
 Compiled 9 Verilog Units
 Built simulation executable Z:/Shared files/Billy/lab2_start/test_alu_isim_beh.exe
-Fuse Memory Usage: 106664 KB
-Fuse CPU Usage: 687 ms
+Fuse Memory Usage: 106344 KB
+Fuse CPU Usage: 764 ms
