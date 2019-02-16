@@ -46,7 +46,7 @@ module alu(X,Y,Z,op_code, equal, overflow, zero);
 	assign zero = 1'b0;
 	
 	//connect to mux
-	mux_16to1 MUX_0 (.A(and_out), .B(reserved), .C(xor_out), .D(sub_out) , .E(or_out), .F(add_out), .G(nor_out), .H(slt_out), .I(srl_out), .J(reserved), .K(sra_out), .L(reserved) , .M(sll_out), .N(reserved), .O(reserved), .P(reserved), .S(op_code), .Z(Z));
+	mux_16to1 MUX_0 (.A(and_out), .B(or_out), .C(xor_out), .D(nor_out) , .E(reserved), .F(add_out), .G(sub_out), .H(slt_out), .I(srl_out), .J(sll_out), .K(sra_out), .L(reserved) , .M(reserved), .N(reserved), .O(reserved), .P(reserved), .S(op_code), .Z(Z));
 
 	
 	
