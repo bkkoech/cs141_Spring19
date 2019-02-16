@@ -14,6 +14,7 @@ module test_alu;
 	reg [31:0] X;
 	reg [31:0] Y;
 	reg [3:0] op_code;
+	
 
 	// Outputs
 	wire [31:0] Z;
@@ -33,18 +34,20 @@ module test_alu;
 	);
 
 	// HINT: 'integer' variables might be useful
+	integer error = 0;
+
 	
 	initial begin
 		// Initialize Inputs
-		X = 0;
+		X = 2147483647;
 		Y = 0;
-		op_code = 0;
-		
+		op_code = 4'b0001;
+				
 		// YOUR CODE HERE
 		// loop through all important test vectors
 		// this triggers the always block
 		
-		$finish;
+		//$finish;
 	
 	end
 	

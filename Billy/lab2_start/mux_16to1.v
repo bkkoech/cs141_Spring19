@@ -18,7 +18,7 @@ module mux_16to1(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,S,Z);
 	
 	
 	//instantiate hardware
-   wire mux_0_out , mux_1_out;
+   wire [31:0] mux_0_out , mux_1_out;
 	mux_8to1 MUX0 (.E(A) , .F(B) , .G(C), .H(D), .I(E), .J(F), .K(G), .L(H) , .S(S[2:0]), .Z(mux_0_out)); // 8 to 1
 	mux_8to1 MUX1 (.E(I) , .F(J) , .G(K), .H(L), .I(M), .J(N), .K(O), .L(P) , .S(S[2:0]), .Z(mux_1_out)); // 8 to 1
 	mux_2to1 MUX2 (.X(mux_0_out) , .Y(mux_1_out) , .S(S[3]), .Z(Z)) ; // 2 to 1

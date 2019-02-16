@@ -31,7 +31,7 @@ module alu(X,Y,Z,op_code, equal, overflow, zero);
 	assign nor_out = ~or_out; // nor
 	
 	// implement adder
-	adder_32bit ADDER (.A(X), .B(Y), .Cout(overflow), .Z(add_out));
+	adder_32_bit ADDER (.A(X), .B(Y), .Cout(overflow), .Z(add_out));
 
 	assign sub_out = 32'b0; // pass zeros until implemented
 	assign slt_out = 32'b0; // pass zeros until implemented
