@@ -1,0 +1,1 @@
+-intstyle "ise" -incremental -lib "unisims_ver" -lib "unimacro_ver" -lib "xilinxcorelib_ver" -lib "secureip" -o "Z:/CS141 - Computer Architecture/Programming Assignments/PA1/lab1_start/testbench_isim_beh.exe" -prj "Z:/CS141 - Computer Architecture/Programming Assignments/PA1/lab1_start/testbench_beh.prj" "work.testbench" "work.glbl" 
