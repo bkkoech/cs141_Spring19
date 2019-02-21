@@ -5,7 +5,7 @@
      behavior or data corruption.  It is strongly advised that
      users do not edit the contents of this file. -->
 <messages>
-<msg type="warning" file="HDLCompiler" num="248" delta="unknown" >"Z:/Shared files/Billy/lab2_start/adder_32_bit.v" Line 25: Block identifier is required on this block
+<msg type="warning" file="HDLCompiler" num="248" delta="unknown" >"Z:/CS141 - Computer Architecture/cs141_Spring19/Final/PA2 pt2/adder_32_bit.v" Line 27: Block identifier is required on this block
 </msg>
 
 </messages>
