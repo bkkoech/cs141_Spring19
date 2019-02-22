@@ -5,19 +5,19 @@
      behavior or data corruption.  It is strongly advised that
      users do not edit the contents of this file. -->
 <messages>
-<msg type="warning" file="HDLCompiler" num="248" delta="unknown" >"Z:/Shared files/Final/PA2 pt2/adder_32_bit.v" Line 29: Block identifier is required on this block
+<msg type="warning" file="HDLCompiler" num="248" delta="unknown" >"Z:/CS141 - Computer Architecture/cs141_Spring19/Final/PA2 pt2/adder_32_bit.v" Line 29: Block identifier is required on this block
 </msg>
 
-<msg type="warning" file="HDLCompiler" num="248" delta="unknown" >"Z:/Shared files/Final/PA2 pt2/SRL.v" Line 37: Block identifier is required on this block
+<msg type="warning" file="HDLCompiler" num="248" delta="unknown" >"Z:/CS141 - Computer Architecture/cs141_Spring19/Final/PA2 pt2/SRL.v" Line 37: Block identifier is required on this block
 </msg>
 
-<msg type="warning" file="HDLCompiler" num="248" delta="unknown" >"Z:/Shared files/Final/PA2 pt2/SRA.v" Line 42: Block identifier is required on this block
+<msg type="warning" file="HDLCompiler" num="248" delta="unknown" >"Z:/CS141 - Computer Architecture/cs141_Spring19/Final/PA2 pt2/SRA.v" Line 42: Block identifier is required on this block
 </msg>
 
-<msg type="warning" file="HDLCompiler" num="248" delta="unknown" >"Z:/Shared files/Final/PA2 pt2/SLL.v" Line 38: Block identifier is required on this block
+<msg type="warning" file="HDLCompiler" num="248" delta="unknown" >"Z:/CS141 - Computer Architecture/cs141_Spring19/Final/PA2 pt2/SLL.v" Line 38: Block identifier is required on this block
 </msg>
 
-<msg type="warning" file="HDLCompiler" num="1016" delta="unknown" >"Z:/Shared files/Final/PA2 pt2/set_less_than.v" Line 24: Port <arg fmt="%s" index="1">Cout</arg> is not connected to this instance
+<msg type="warning" file="HDLCompiler" num="1016" delta="unknown" >"Z:/CS141 - Computer Architecture/cs141_Spring19/Final/PA2 pt2/set_less_than.v" Line 24: Port <arg fmt="%s" index="1">Cout</arg> is not connected to this instance
 </msg>
 
 </messages>

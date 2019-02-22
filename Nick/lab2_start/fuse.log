@@ -1,0 +1,41 @@
+Running: C:\Xilinx\14.7\ISE_DS\ISE\bin\nt\unwrapped\fuse.exe -intstyle ise -incremental -lib unisims_ver -lib unimacro_ver -lib xilinxcorelib_ver -lib secureip -o Z:/CS141 - Computer Architecture/cs141_Spring19/Nick/lab2_start/test_alu_isim_beh.exe -prj Z:/CS141 - Computer Architecture/cs141_Spring19/Nick/lab2_start/test_alu_beh.prj work.test_alu work.glbl 
+ISim P.20131013 (signature 0x8ef4fb42)
+Number of CPUs detected in this system: 2
+Turning on mult-threading, number of parallel sub-compilation jobs: 4 
+Determining compilation order of HDL files
+Analyzing Verilog file "Z:/CS141 - Computer Architecture/cs141_Spring19/Nick/lab2_start/one_bit_full_adder.v" into library work
+Analyzing Verilog file "Z:/CS141 - Computer Architecture/cs141_Spring19/Nick/lab2_start/mux_2to1.v" into library work
+Analyzing Verilog file "Z:/CS141 - Computer Architecture/cs141_Spring19/Nick/lab2_start/mux_4to1.v" into library work
+Analyzing Verilog file "Z:/CS141 - Computer Architecture/cs141_Spring19/Nick/lab2_start/adder_32_bit.v" into library work
+WARNING:HDLCompiler:248 - "Z:/CS141 - Computer Architecture/cs141_Spring19/Nick/lab2_start/adder_32_bit.v" Line 29: Block identifier is required on this block
+Analyzing Verilog file "Z:/CS141 - Computer Architecture/cs141_Spring19/Nick/lab2_start/subtractor.v" into library work
+Analyzing Verilog file "Z:/CS141 - Computer Architecture/cs141_Spring19/Nick/lab2_start/mux_8to1.v" into library work
+Analyzing Verilog file "Z:/CS141 - Computer Architecture/cs141_Spring19/Nick/lab2_start/set_less_than.v" into library work
+Analyzing Verilog file "Z:/CS141 - Computer Architecture/cs141_Spring19/Nick/lab2_start/mux_16to1.v" into library work
+Analyzing Verilog file "Z:/CS141 - Computer Architecture/cs141_Spring19/Nick/lab2_start/alu.v" into library work
+Analyzing Verilog file "Z:/CS141 - Computer Architecture/cs141_Spring19/Nick/lab2_start/test_alu.v" into library work
+Analyzing Verilog file "C:/Xilinx/14.7/ISE_DS/ISE//verilog/src/glbl.v" into library work
+Starting static elaboration
+WARNING:HDLCompiler:1016 - "Z:/CS141 - Computer Architecture/cs141_Spring19/Nick/lab2_start/set_less_than.v" Line 24: Port Cout is not connected to this instance
+Completed static elaboration
+Fuse Memory Usage: 105556 KB
+Fuse CPU Usage: 921 ms
+Compiling module one_bit_full_adder
+Compiling module adder_32_bit_default
+Compiling module adder_32_bit(Cin=1)
+Compiling module subtractor
+Compiling module subtractor(N=32)
+Compiling module set_less_than
+Compiling module mux_2to1(N=32)
+Compiling module mux_4to1(N=32)
+Compiling module mux_8to1(N=32)
+Compiling module mux_16to1(Q=32)
+Compiling module alu
+Compiling module test_alu
+Compiling module glbl
+Time Resolution for simulation is 1ps.
+Waiting for 1 sub-compilation(s) to finish...
+Compiled 13 Verilog Units
+Built simulation executable Z:/CS141 - Computer Architecture/cs141_Spring19/Nick/lab2_start/test_alu_isim_beh.exe
+Fuse Memory Usage: 109124 KB
+Fuse CPU Usage: 1468 ms

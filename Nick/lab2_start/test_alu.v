@@ -153,7 +153,7 @@ module test_alu;
 				end
 			end
 			`ALU_OP_SLT: begin
-				if( (X<Y && Z!==1) || (X>Y && Z!==0)) begin
+				if( (X<Y && Z[0]!==1) || (X>Y && Z[0]!==0)) begin
 					$display("ERROR: SLT failed:  op_code = %b, X = %h, Y = %h, Z = %h", op_code, X, Y, Z);
 					error = error + 1;
 				end

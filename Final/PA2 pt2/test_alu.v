@@ -95,6 +95,11 @@ module test_alu;
 			X = 8;
 			Y = 1;
 			#10;
+			
+			// Equal test
+			X = 51;
+			Y = 51;
+			#10;
 
 		end
 		
@@ -161,7 +166,7 @@ module test_alu;
 					error = error + 1;
 				end
 				//check if overflow works
-				if( (Z > 4294967295) & (overflow !== 1)) begin
+				if( (Z > 4294967295) && (overflow !== 1)) begin
 					$display("ERROR: ADD overflow failed:  op_code = %b, X = %h, Y = %h, Z = %h", op_code, X, Y, Z);
 					error = error + 1;
 				end
@@ -200,6 +205,7 @@ module test_alu;
 					error = error + 1;
 				end
 			end
+			
 			default : begin
 				//executes at default
 				if (Z !== 32'd0) begin
@@ -208,6 +214,17 @@ module test_alu;
 			end
 		endcase
 		
+		// equality test
+		if((X==Y) && (equal !== 1)) begin
+			$display("ERROR: equality:  op_code = %b, X = %h, Y = %h, Z = %h", op_code, X, Y, Z);
+			error = error + 1;
+		end
+		
+		// Zero-out test
+		if (Z==32'b0 && zero !== 1) begin
+			$display("ERROR: Zero-out:  op_code = %b, X = %h, Y = %h, Z = %h", op_code, X, Y, Z);
+			error = error + 1;
+		end
 	end
 	
 endmodule
