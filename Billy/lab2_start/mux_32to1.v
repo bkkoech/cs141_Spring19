@@ -9,7 +9,7 @@
 //
 //
 //////////////////////////////////////////////////////////////////////////////////
-module mux_32to1(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,AA,BB,CC,DD,EE,FF,GG,HH,II,JJ,KK,LL,MM,NN,OO,PP);
+module mux_32to1(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,AA,BB,CC,DD,EE,FF,GG,HH,II,JJ,KK,LL,MM,NN,OO,PP,S,Z);
 
 
 	parameter Q = 32; //32 bits by default
