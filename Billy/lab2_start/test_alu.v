@@ -11,9 +11,9 @@
 module test_alu;
 
 	// Inputs
-	reg [31:0] X;
-	reg [31:0] Y;
-	reg [3:0] op_code;
+	reg signed [31:0] X;
+	reg signed [31:0] Y;
+	reg signed [3:0] op_code;
 	
 
 	// Outputs
@@ -75,6 +75,12 @@ module test_alu;
 			X = 4294967295;
 			Y = 1;
 			#10;
+			
+			//big positive number and big negative number 
+			// for testing overflow of subtraction
+			X = 4294967295;
+			Y = -4294967295;
+			#10;
 
 		end
 		
@@ -134,6 +140,17 @@ module test_alu;
 				end
 			end
 			`ALU_OP_SUB: begin
+			//only executes when the op code is 0110 (SUB)
+				//check if addition works
+				if( Z !== X-Y ) begin
+					$display("ERROR: SUB:  op_code = %b, X = %h, Y = %h, Z = %h", op_code, X, Y, Z);
+					error = error + 1;
+				end
+				//check if overflow works
+				if( (Z > 4294967295) & (overflow !== 1)) begin
+					$display("ERROR: ADD overflow failed:  op_code = %b, X = %h, Y = %h, Z = %h", op_code, X, Y, Z);
+					error = error + 1;
+				end
 			end
 			`ALU_OP_SLT: begin
 			end
