@@ -9,15 +9,22 @@
          <ClosedNodesVersion>2</ClosedNodesVersion>
          <ClosedNode>/alu Z:|CS141 - Computer Architecture|cs141_Spring19|Billy|lab2_start|alu.v/MUX_0 - mux_16to1/MUX0 - mux_8to1</ClosedNode>
          <ClosedNode>/alu Z:|CS141 - Computer Architecture|cs141_Spring19|Billy|lab2_start|alu.v/MUX_0 - mux_16to1/MUX1 - mux_8to1</ClosedNode>
+         <ClosedNode>/alu Z:|Shared files|Billy|lab2_start|alu.v/ADDER_0 - adder_32_bit</ClosedNode>
+         <ClosedNode>/alu Z:|Shared files|Billy|lab2_start|alu.v/MUX_0 - mux_16to1</ClosedNode>
+         <ClosedNode>/alu Z:|Shared files|Billy|lab2_start|alu.v/MUX_1 - mux_16to1</ClosedNode>
+         <ClosedNode>/alu Z:|Shared files|Billy|lab2_start|alu.v/SLL_0 - SLL</ClosedNode>
+         <ClosedNode>/alu Z:|Shared files|Billy|lab2_start|alu.v/SRA_0 - SRA</ClosedNode>
+         <ClosedNode>/alu Z:|Shared files|Billy|lab2_start|alu.v/SRL_0 - SRL</ClosedNode>
+         <ClosedNode>/alu Z:|Shared files|Billy|lab2_start|alu.v/SUB_0 - subtractor</ClosedNode>
       </ClosedNodes>
       <SelectedItems>
-         <SelectedItem></SelectedItem>
+         <SelectedItem>alu (Z:/Shared files/Billy/lab2_start/alu.v)</SelectedItem>
       </SelectedItems>
-      <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
+      <ScrollbarPosition orientation="vertical" >1</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
-      <ViewHeaderState orientation="horizontal" >000000ff00000000000000010000000100000000000000000000000000000000020200000001000000010000006400000195000000020000000000000000000000000200000064ffffffff000000810000000300000002000001950000000100000003000000000000000100000003</ViewHeaderState>
+      <ViewHeaderState orientation="horizontal" >000000ff000000000000000100000001000000000000000000000000000000000202000000010000000100000064000001a9000000020000000000000000000000000200000064ffffffff000000810000000300000002000001a90000000100000003000000000000000100000003</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >true</UserChangedColumnWidths>
-      <CurrentItem></CurrentItem>
+      <CurrentItem>alu (Z:/Shared files/Billy/lab2_start/alu.v)</CurrentItem>
    </ItemView>
    <ItemView engineview="SynthesisOnly" sourcetype="DESUT_VERILOG" guiview="Process" >
       <ClosedNodes>
@@ -80,15 +87,16 @@
          <ClosedNode>/test_alu Z:|CS141 - Computer Architecture|cs141_Spring19|Billy|lab2_start|test_alu.v/uut - alu/MUX_0 - mux_16to1/MUX0 - mux_8to1/MUX0 - mux_4to1</ClosedNode>
          <ClosedNode>/test_alu Z:|CS141 - Computer Architecture|cs141_Spring19|Billy|lab2_start|test_alu.v/uut - alu/MUX_0 - mux_16to1/MUX0 - mux_8to1/MUX1 - mux_4to1</ClosedNode>
          <ClosedNode>/test_alu Z:|CS141 - Computer Architecture|cs141_Spring19|Billy|lab2_start|test_alu.v/uut - alu/MUX_0 - mux_16to1/MUX1 - mux_8to1</ClosedNode>
+         <ClosedNode>/test_alu Z:|Shared files|Billy|lab2_start|test_alu.v</ClosedNode>
       </ClosedNodes>
       <SelectedItems>
-         <SelectedItem>SRA (Z:/Shared files/Billy/lab2_start/SRA.v)</SelectedItem>
+         <SelectedItem>test_alu (Z:/Shared files/Billy/lab2_start/test_alu.v)</SelectedItem>
       </SelectedItems>
       <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
-      <ViewHeaderState orientation="horizontal" >000000ff000000000000000100000001000000000000000000000000000000000202000000010000000100000064000001a9000000020000000000000000000000000200000064ffffffff000000810000000300000002000001a90000000100000003000000000000000100000003</ViewHeaderState>
+      <ViewHeaderState orientation="horizontal" >000000ff000000000000000100000001000000000000000000000000000000000202000000010000000100000064000000ae000000020000000000000000000000000200000064ffffffff000000810000000300000002000000ae0000000100000003000000000000000100000003</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >true</UserChangedColumnWidths>
-      <CurrentItem>SRA (Z:/Shared files/Billy/lab2_start/SRA.v)</CurrentItem>
+      <CurrentItem>test_alu (Z:/Shared files/Billy/lab2_start/test_alu.v)</CurrentItem>
    </ItemView>
    <ItemView engineview="BehavioralSim" sourcetype="" guiview="Process" >
       <ClosedNodes>
@@ -110,13 +118,13 @@
          <ClosedNodesVersion>1</ClosedNodesVersion>
       </ClosedNodes>
       <SelectedItems>
-         <SelectedItem></SelectedItem>
+         <SelectedItem>Simulate Behavioral Model</SelectedItem>
       </SelectedItems>
       <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
       <ViewHeaderState orientation="horizontal" >000000ff000000000000000100000001000000000000000000000000000000000000000000000000f8000000010000000100000000000000000000000064ffffffff000000810000000000000001000000f80000000100000000</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >false</UserChangedColumnWidths>
-      <CurrentItem></CurrentItem>
+      <CurrentItem>Simulate Behavioral Model</CurrentItem>
    </ItemView>
    <SourceProcessView>000000ff0000000000000002000001390000011b01000000050100000002</SourceProcessView>
    <CurrentView>Behavioral Simulation</CurrentView>

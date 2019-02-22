@@ -11,9 +11,10 @@
 module test_alu;
 
 	// Inputs
-	reg [31:0] X;
-	reg [31:0] Y;
-	reg [3:0] op_code;
+	reg signed [31:0] X;
+	reg signed [31:0] Y;
+	reg signed [3:0] op_code;
+	reg signed [31:0] intermediate;
 	
 
 	// Outputs
@@ -21,6 +22,8 @@ module test_alu;
 	wire equal;
 	wire overflow;
 	wire zero;
+	
+
 
 	// Instantiate the Unit Under Test (UUT)
 	alu uut (
@@ -43,6 +46,7 @@ module test_alu;
 		X = 3;
 		Y = 2;
 		op_code = 4'b0;
+		intermediate = 32'b0;
 				
 		// YOUR CODE HERE
 		// loop through all important test vectors
@@ -73,6 +77,22 @@ module test_alu;
 			
 			// maximum 32 bit number and 1
 			X = 4294967295;
+			Y = 1;
+			#10;
+			
+			//big positive number and big negative number 
+			// for testing overflow of subtraction
+			X = 4294967295;
+			Y = -4294967295;
+			#10;
+			
+			// SRL: shift 2 by 1
+			X = 2;
+			Y = 1;
+			#10;
+			
+			// SRL: shift 8 by 2
+			X = 8;
 			Y = 1;
 			#10;
 
@@ -134,14 +154,51 @@ module test_alu;
 				end
 			end
 			`ALU_OP_SUB: begin
+			//only executes when the op code is 0110 (SUB)
+				//check if addition works
+				if( Z !== X-Y ) begin
+					$display("ERROR: SUB:  op_code = %b, X = %h, Y = %h, Z = %h", op_code, X, Y, Z);
+					error = error + 1;
+				end
+				//check if overflow works
+				if( (Z > 4294967295) & (overflow !== 1)) begin
+					$display("ERROR: ADD overflow failed:  op_code = %b, X = %h, Y = %h, Z = %h", op_code, X, Y, Z);
+					error = error + 1;
+				end
 			end
 			`ALU_OP_SLT: begin
+				//check if slt works
+				if( (X<Y && Z!==1) || (X>Y && Z!==0)) begin
+						$display("ERROR: SLT failed:  op_code = %b, X = %h, Y = %h, Z = %h", op_code, X, Y, Z);
+						error = error + 1;
+					end
 			end
 			`ALU_OP_SRL: begin
+			//only executes when the op code is 1000 (SRL)
+				//check if shift right works
+				if( Z !== X>>Y ) begin
+					$display("ERROR: SRL:  op_code = %b, X = %h, Y = %h, Z = %h", op_code, X, Y, Z);
+					error = error + 1;
+				end
 			end
 			`ALU_OP_SLL: begin
+			//only executes when the op code is 1001 (SLL)
+				//check if shift right works
+				if( Z !== X<<Y ) begin
+					$display("ERROR: SLL:  op_code = %b, X = %h, Y = %h, Z = %h", op_code, X, Y, Z);
+					error = error + 1;
+				end
 			end
 			`ALU_OP_SRA: begin
+			//only executes when the op code is 1010 (SRA)
+				//check if SRA works
+				
+				// store shifted variable in intermediate variable
+				intermediate = X>>>Y;
+				if( Z !== intermediate) begin
+					$display("ERROR: SRA:  op_code = %b, X = %h, Y = %h, Z = %h, expected Z = %h ", op_code, X, Y, Z, X>>>Y);
+					error = error + 1;
+				end
 			end
 			default : begin
 				//executes at default

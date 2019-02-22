@@ -3,20 +3,25 @@
 //////////////////////////////////////////////////////////////////////////////////
 // 
 // CS 141 - Fall 2015
-// Module Name:    one_bit_full_adder 
+// Module Name:    SUB 
 // Author(s): 
 // Description: 
 //
 //
 //////////////////////////////////////////////////////////////////////////////////
-module one_bit_full_adder(A, B, Cin, Cout, Z);
+module SUB(A, B, Cout, Z);
 
-	//port definitions - customize for different bit widths
-	input wire A, B, Cin; //two 1 bit inputs and Carry in
-	output wire Z, Cout; // one 1 bit carry out
+	//parameter definitions
+	parameter N = 32;
 	
-	assign Z =  (A ^ B) ^ Cin;// add
-	assign Cout = (A & B) | (Cin &(A ^ B)); //carry out
+	//inputs and output
+	input wire [N-1:0] A, B;
+	output wire [N-1:0] Z;
+	output wire Cout;
+	
+	// Invert B and pass Cin = 1
+	adder_32_bit #(.Cin(1)) ADDER_1 (.A(A), .B(~B), .Cout(Cout), .Z(Z));
+
 
 endmodule
 `default_nettype wire //some Xilinx IP requires that the default_nettype be set to wire

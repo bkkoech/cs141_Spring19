@@ -12,7 +12,9 @@
 module adder_32_bit(A, B, Cout, Z);
 
 	//parameter definitions
+	
 	parameter N = 32;
+	parameter Cin = 0;
 	
 	input wire [N-1:0] A, B;
 	output wire [N-1:0] Z;
@@ -20,7 +22,7 @@ module adder_32_bit(A, B, Cout, Z);
 	
 	wire carrys [N:0];
 	
-	assign carrys[0] = 0;
+	assign carrys[0] = Cin;
 	
 	generate
 		genvar i;

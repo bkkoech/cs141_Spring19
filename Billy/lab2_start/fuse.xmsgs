@@ -11,7 +11,13 @@
 <msg type="warning" file="HDLCompiler" num="248" delta="unknown" >"Z:/Shared files/Billy/lab2_start/SRL.v" Line 37: Block identifier is required on this block
 </msg>
 
+<msg type="warning" file="HDLCompiler" num="248" delta="unknown" >"Z:/Shared files/Billy/lab2_start/SRA.v" Line 42: Block identifier is required on this block
+</msg>
+
 <msg type="warning" file="HDLCompiler" num="248" delta="unknown" >"Z:/Shared files/Billy/lab2_start/SLL.v" Line 38: Block identifier is required on this block
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1016" delta="unknown" >"Z:/Shared files/Billy/lab2_start/set_less_than.v" Line 24: Port <arg fmt="%s" index="1">Cout</arg> is not connected to this instance
 </msg>
 
 </messages>

@@ -25,7 +25,7 @@ module alu(X,Y,Z,op_code, equal, overflow, zero);
 	output wire equal, overflow, zero;
 	
 	
-	wire [N-1:0] and_out, or_out, xor_out, nor_out, add_out, sub_out, slt_out, srl_out, sll_out, sra_out, reserved, not_connected;
+	wire [N-1:0] and_out, or_out, xor_out, nor_out, add_out, sub_out, slt_out, srl_out, sll_out, sra_out, reserved;
 	wire overflow_add, overflow_sub; // for the overflow mux
 	
 	//define and assign operations 
@@ -40,34 +40,31 @@ module alu(X,Y,Z,op_code, equal, overflow, zero);
 	// implement subtractor
 	subtractor SUB_0 (.A(X), .B(Y), .Cout(overflow_sub), .Z(sub_out));
 	
-	//overflow mux
+	//overflow mux- pass zeros for other functions except for add and subtract
 	mux_16to1 #(.Q(1)) MUX_1 (.A(1'b0), .B(1'b0), .C(1'b0), .D(1'b0) , .E(1'b0), .F(overflow_add), .G(overflow_sub), .H(1'b0), .I(1'b0), .J(1'b0), .K(1'b0), .L(1'b0) , .M(1'b0), .N(1'b0), .O(1'b0), .P(1'b0), .S(op_code), .Z(overflow));
 
 	
-	assign slt_out = 'b0; // pass zeros until implemented
-	
-	// implement srl
+	//implement SLT
+	set_less_than SLT_0 (.X(X), .Y(Y), .Z(slt_out));
+
+	// implement srl by instantiating SRL module
 	SRL SRL_0 (.A(X), .B(Y), .Z(srl_out));
 	
-	// assign srl_out = 'b0; //pass zeros until implemented
-	
+	// immplement sll by instantiating SLL module
 	SLL SLL_0 (.A(X), .B(Y), .Z(sll_out));
-	//assign sll_out = 'b0; //pass zeros until implemented
-	assign sra_out = 'b0; //pass zeros until implemented
+
+	// implement sra by instantiating SRA module
+	SRA SRA_0 (.A(X), .B(Y), .Z(sra_out));
+
 	assign reserved = 'b0; // pass in zeros for the reserved op codes
-	assign not_connected = 'b0; // pass in zeros for the outputs that are not connected
 	
 	//Other ALU outputs; To be implemented in Part 2
 	assign equal = &(~(X^Y));
-	
 	assign zero = ~(|Z);
 	
 	//connect to mux
 	mux_16to1 #(.Q(N)) MUX_0 (.A(and_out), .B(or_out), .C(xor_out), .D(nor_out) , .E(reserved), .F(add_out), .G(sub_out), .H(slt_out), .I(srl_out), .J(sll_out), .K(sra_out), .L(reserved) , .M(reserved), .N(reserved), .O(reserved), .P(reserved), .S(op_code), .Z(Z));
 	
-	
-	
-   //YOUR CODE HERE - remember to use a separate file for each module you create
 
 
 endmodule

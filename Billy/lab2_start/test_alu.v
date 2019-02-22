@@ -14,6 +14,7 @@ module test_alu;
 	reg signed [31:0] X;
 	reg signed [31:0] Y;
 	reg signed [3:0] op_code;
+	reg signed [31:0] intermediate;
 	
 
 	// Outputs
@@ -21,6 +22,8 @@ module test_alu;
 	wire equal;
 	wire overflow;
 	wire zero;
+	
+
 
 	// Instantiate the Unit Under Test (UUT)
 	alu uut (
@@ -163,6 +166,11 @@ module test_alu;
 				end
 			end
 			`ALU_OP_SLT: begin
+				//check if slt works
+				if( (X<Y && Z!==1) || (X>Y && Z!==0)) begin
+						$display("ERROR: SLT failed:  op_code = %b, X = %h, Y = %h, Z = %h", op_code, X, Y, Z);
+						error = error + 1;
+					end
 			end
 			`ALU_OP_SRL: begin
 			//only executes when the op code is 1000 (SRL)
@@ -183,10 +191,11 @@ module test_alu;
 			`ALU_OP_SRA: begin
 			//only executes when the op code is 1010 (SRA)
 				//check if SRA works
-				$display(" testing SRA:  op_code = %b, X = %b, Y = %b, Z = %b, expect Z = %b,  ", op_code, X, Y, Z, X>>>Y );
 				
-				if( Z !== X>>>Y ) begin
-					$display("ERROR: SRA:  op_code = %b, X = %h, Y = %h, Z = %h", op_code, X, Y, Z);
+				// store shifted variable in intermediate variable
+				intermediate = X>>>Y;
+				if( Z !== intermediate) begin
+					$display("ERROR: SRA:  op_code = %b, X = %h, Y = %h, Z = %h, expected Z = %h ", op_code, X, Y, Z, X>>>Y);
 					error = error + 1;
 				end
 			end

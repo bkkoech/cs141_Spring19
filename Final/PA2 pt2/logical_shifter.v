@@ -3,20 +3,18 @@
 //////////////////////////////////////////////////////////////////////////////////
 // 
 // CS 141 - Fall 2015
-// Module Name:    one_bit_full_adder 
+// Module Name:    logical_shifter 
 // Author(s): 
 // Description: 
 //
 //
 //////////////////////////////////////////////////////////////////////////////////
-module one_bit_full_adder(A, B, Cin, Cout, Z);
+module logical_shifter();
+
+	//parameter definitions
 
 	//port definitions - customize for different bit widths
-	input wire A, B, Cin; //two 1 bit inputs and Carry in
-	output wire Z, Cout; // one 1 bit carry out
-	
-	assign Z =  (A ^ B) ^ Cin;// add
-	assign Cout = (A & B) | (Cin &(A ^ B)); //carry out
+
 
 endmodule
 `default_nettype wire //some Xilinx IP requires that the default_nettype be set to wire
