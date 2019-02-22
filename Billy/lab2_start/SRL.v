@@ -21,6 +21,15 @@ module SRL(A,B,Z);
 	//concatenate zeros infront of A
 	wire [2*N-1:0] C;
 	assign C = {32'b0, A};
+	
+	//make sure the shamt does not exceed 32
+	wire [N-1:0] srl_input, ground_input;
+	wire srl_select;
+	
+	assign ground_input = 32'b0;
+	assign srl_select = |B[N-1:4];
+	
+	mux_2to1 #(.N(N)) MUX_1 (.X(srl_input), .Y(ground_input), .S(srl_select), .Z(Z)); 
 
 	
 	generate
@@ -62,7 +71,7 @@ module SRL(A,B,Z);
 			C[N-32+i]
 			}),
 			.S(B[4:0]),
-			.Z(Z[i])
+			.Z(srl_input[i])
 			);
 			
 		end

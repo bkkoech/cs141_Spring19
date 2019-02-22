@@ -181,6 +181,14 @@ module test_alu;
 				end
 			end
 			`ALU_OP_SRA: begin
+			//only executes when the op code is 1010 (SRA)
+				//check if SRA works
+				$display(" testing SRA:  op_code = %b, X = %b, Y = %b, Z = %b, expect Z = %b,  ", op_code, X, Y, Z, X>>>Y );
+				
+				if( Z !== X>>>Y ) begin
+					$display("ERROR: SRA:  op_code = %b, X = %h, Y = %h, Z = %h", op_code, X, Y, Z);
+					error = error + 1;
+				end
 			end
 			default : begin
 				//executes at default

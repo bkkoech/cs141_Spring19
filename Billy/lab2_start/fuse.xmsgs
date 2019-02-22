@@ -8,10 +8,10 @@
 <msg type="warning" file="HDLCompiler" num="248" delta="unknown" >"Z:/Shared files/Billy/lab2_start/adder_32_bit.v" Line 29: Block identifier is required on this block
 </msg>
 
-<msg type="warning" file="HDLCompiler" num="248" delta="unknown" >"Z:/Shared files/Billy/lab2_start/SRL.v" Line 28: Block identifier is required on this block
+<msg type="warning" file="HDLCompiler" num="248" delta="unknown" >"Z:/Shared files/Billy/lab2_start/SRL.v" Line 37: Block identifier is required on this block
 </msg>
 
-<msg type="warning" file="HDLCompiler" num="248" delta="unknown" >"Z:/Shared files/Billy/lab2_start/SLL.v" Line 29: Block identifier is required on this block
+<msg type="warning" file="HDLCompiler" num="248" delta="unknown" >"Z:/Shared files/Billy/lab2_start/SLL.v" Line 38: Block identifier is required on this block
 </msg>
 
 </messages>

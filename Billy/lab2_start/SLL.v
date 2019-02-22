@@ -22,6 +22,15 @@ module SLL(A,B,Z);
 	//concatenate zeros infront of A
 	wire [2*N-1:0] C;
 	assign C = {A, 32'b0};
+	
+	//make sure the shamt does not exceed 32
+	wire [N-1:0] ssl_input, ground_input;
+	wire sll_select;
+	
+	assign ground_input = 32'b0;
+	assign sll_select = |B[N-1:4];
+	
+	mux_2to1 #(.N(N)) MUX_0 (.X(ssl_input), .Y(ground_input), .S(sll_select), .Z(Z)); 
 
 	
 	generate
@@ -63,7 +72,7 @@ module SLL(A,B,Z);
 			C[N+31-i]
 			}),
 			.S(B[4:0]),
-			.Z(Z[N-1-i])
+			.Z(ssl_input[N-1-i])
 			);
 			
 		end
