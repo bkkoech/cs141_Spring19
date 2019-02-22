@@ -81,6 +81,16 @@ module test_alu;
 			X = 4294967295;
 			Y = -4294967295;
 			#10;
+			
+			// SRL: shift 2 by 1
+			X = 2;
+			Y = 1;
+			#10;
+			
+			// SRL: shift 8 by 2
+			X = 8;
+			Y = 1;
+			#10;
 
 		end
 		
@@ -155,8 +165,20 @@ module test_alu;
 			`ALU_OP_SLT: begin
 			end
 			`ALU_OP_SRL: begin
+			//only executes when the op code is 1000 (SRL)
+				//check if shift right works
+				if( Z !== X>>Y ) begin
+					$display("ERROR: SRL:  op_code = %b, X = %h, Y = %h, Z = %h", op_code, X, Y, Z);
+					error = error + 1;
+				end
 			end
 			`ALU_OP_SLL: begin
+			//only executes when the op code is 1001 (SLL)
+				//check if shift right works
+				if( Z !== X<<Y ) begin
+					$display("ERROR: SLL:  op_code = %b, X = %h, Y = %h, Z = %h", op_code, X, Y, Z);
+					error = error + 1;
+				end
 			end
 			`ALU_OP_SRA: begin
 			end

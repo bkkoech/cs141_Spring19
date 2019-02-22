@@ -40,8 +40,14 @@ module alu(X,Y,Z,op_code, equal, overflow, zero);
 	subtractor SUB_0 (.A(X), .B(Y), .Cout(overflow), .Z(sub_out));
 	
 	assign slt_out = 'b0; // pass zeros until implemented
-	assign srl_out = 'b0; //pass zeros until implemented
-	assign sll_out = 'b0; //pass zeros until implemented
+	
+	// implement srl
+	SRL SRL_0 (.A(X), .B(Y), .Z(srl_out));
+	
+	// assign srl_out = 'b0; //pass zeros until implemented
+	
+	SLL SLL_0 (.A(X), .B(Y), .Z(sll_out));
+	//assign sll_out = 'b0; //pass zeros until implemented
 	assign sra_out = 'b0; //pass zeros until implemented
 	assign reserved = 'b0; // pass in zeros for the reserved op codes
 	assign not_connected = 'b0; // pass in zeros for the outputs that are not connected

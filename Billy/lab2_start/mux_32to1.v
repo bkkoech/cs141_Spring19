@@ -9,22 +9,23 @@
 //
 //
 //////////////////////////////////////////////////////////////////////////////////
-module mux_32to1(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,AA,BB,CC,DD,EE,FF,GG,HH,II,JJ,KK,LL,MM,NN,OO,PP,S,Z);
+module mux_32to1(A,S,Z);
 
 
 	parameter Q = 32; //32 bits by default
+	parameter N = 1; // Make each bus 1 bit
 	
 	//port definitions - customize for different bit widths
-	input wire [Q-1:0] A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,AA,BB,CC,DD,EE,FF,GG,HH,II,JJ,KK,LL,MM,NN,OO,PP; // 32 32bit input buses
+	input wire [Q-1:0] A; //1 32bit input bus
 	input wire [4:0] S; // 4bit signal select bus
-	output wire [Q-1:0] Z; // 1 32bit output bus
+	output wire Z; // 1 32bit output bus
 	
 	
 	//instantiate hardware
-   wire [Q-1:0] mux_0_out , mux_1_out;
-	mux_16to1 #(.Q(Q)) MUX_0 (.A(A), .B(B), .C(C), .D(D) , .E(E), .F(F), .G(G), .H(H), .I(I), .J(J), .K(K), .L(L) , .M(M), .N(N), .O(O), .P(P), .S(S[3:0]), .Z(mux_0_out));; // 16 to 1 mux
-	mux_16to1 #(.Q(Q)) MUX_1 (.A(AA), .B(BB), .C(CC), .D(DD) , .E(EE), .F(FF), .G(GG), .H(HH), .I(II), .J(JJ), .K(KK), .L(LL) , .M(MM), .N(NN), .O(OO), .P(PP), .S(S[3:0]), .Z(mux_1_out));; // 16 to 1 mux
-	mux_2to1 #(.N(Q)) MUX2 (.X(mux_0_out) , .Y(mux_1_out) , .S(S[4]), .Z(Z)) ; // 2 to 1
+   wire mux_0_out , mux_1_out;
+	mux_16to1 #(.Q(N)) MUX_0 (.A(A[0]), .B(A[1]), .C(A[2]), .D(A[3]) , .E(A[4]), .F(A[5]), .G(A[6]), .H(A[7]), .I(A[8]), .J(A[9]), .K(A[10]), .L(A[11]) , .M(A[12]), .N(A[13]), .O(A[14]), .P(A[15]), .S(S[3:0]), .Z(mux_0_out));// 16 to 1 mux
+	mux_16to1 #(.Q(N)) MUX_1 (.A(A[0]), .B(A[1]), .C(A[2]), .D(A[3]) , .E(A[4]), .F(A[5]), .G(A[6]), .H(A[7]), .I(A[8]), .J(A[9]), .K(A[10]), .L(A[11]) , .M(A[12]), .N(A[13]), .O(A[14]), .P(A[15]), .S(S[3:0]), .Z(mux_1_out)); // 16 to 1 mux
+	mux_2to1 #(.N(N)) MUX_2 (.X(mux_0_out) , .Y(mux_1_out) , .S(S[4]), .Z(Z)); // 2 to 1
 
 
 
