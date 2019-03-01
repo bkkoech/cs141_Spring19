@@ -1,0 +1,25 @@
+ISim log file
+Running: Z:\Shared files\Billy\lab3_start\test_timer_isim_beh.exe -intstyle ise -gui -tclbatch isim.cmd -wdb Z:/Shared files/Billy/lab3_start/test_timer_isim_beh.wdb 
+ISim P.20131013 (signature 0x8ef4fb42)
+WARNING: A WEBPACK license was found.
+WARNING: Please use Xilinx License Configuration Manager to check out a full ISim license.
+WARNING: ISim will run in Lite mode. Please refer to the ISim documentation for more information on the differences between the Lite and the Full version.
+This is a Lite version of ISim.
+Time resolution is 1 ps
+# onerror resume
+# wave add /
+# run 1000 ns
+Simulator is doing circuit initialization process.
+Finished circuit initialization process.
+start out: 15, expected: 15
+test load out:  4, expected:  4
+test reset: 15, expected: 15
+test down counter and pause out:  5, expected: 5
+test if timer stops at zero for clk cycles >15 out:  0, expected: 0
+# run all
+test timer holds value when enable is not asserted: 10, expected: 10
+test if reset takes presedence over enable: 15, expected: 15
+test if reset takes presedence over load out: 15, expected:          15
+test if load takes presedence over load out:  2, expected:  2
+Finished with 0 errors
+Stopped at time : 1670 ns : File "//vmware-host/Shared Folders/Shared files/Billy/lab3_start/test_timer.v" Line 231
