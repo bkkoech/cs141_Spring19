@@ -9,10 +9,10 @@ SET_PREFERENCE verilogsim true
 SET_PREFERENCE vhdlsim false
 SET_PREFERENCE simulationfiles Behavioral
 SET_PREFERENCE busformat BusFormatAngleBracketNotRipped
-SET_PREFERENCE outputdirectory Z:/CS141_2019/lab3_2019/ipcore_dir/
-SET_PREFERENCE workingdirectory Z:/CS141_2019/lab3_2019/ipcore_dir/tmp/
-SET_PREFERENCE subworkingdirectory Z:/CS141_2019/lab3_2019/ipcore_dir/tmp/_cg/
-SET_PREFERENCE transientdirectory Z:/CS141_2019/lab3_2019/ipcore_dir/tmp/_cg/_dbg/
+SET_PREFERENCE outputdirectory Z:/CS141 - Computer Architecture/cs141_Spring19/Nick/lab3_start/ipcore_dir/
+SET_PREFERENCE workingdirectory Z:/CS141 - Computer Architecture/cs141_Spring19/Nick/lab3_start/ipcore_dir/tmp/
+SET_PREFERENCE subworkingdirectory Z:/CS141 - Computer Architecture/cs141_Spring19/Nick/lab3_start/ipcore_dir/tmp/_cg/
+SET_PREFERENCE transientdirectory Z:/CS141 - Computer Architecture/cs141_Spring19/Nick/lab3_start/ipcore_dir/tmp/_cg/_dbg/
 SET_PREFERENCE designentry Verilog
 SET_PREFERENCE flowvendor Other
 SET_PREFERENCE addpads false

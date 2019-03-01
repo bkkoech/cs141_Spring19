@@ -41,7 +41,7 @@ module main(switch, led, rstb_button, button_center, button_down, unbuf_clk);
 	
 	clk_divider div_1hz(.clk_in(cclk), .rst(rst) ,.clk_out(clk_1hz));
 		
-	timer timer_u(.clk(clk_1hz), .rst(timer_rst), .en(en), .load(load), .init(init), .out(out)); 
+//	timer timer_u(.clk(clk_1hz), .rst(timer_rst), .en(en), .load(load), .init(init), .out(out)); 
 	
 	//uncomment for part 2
 	//traffic_light_controller tlc(.clk(clk_1hz), .rst(timer_rst), .timer_en(en), .timer_load(load), .timer_init(init), .timer_out(out),
