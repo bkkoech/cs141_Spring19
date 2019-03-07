@@ -39,7 +39,7 @@ module main(switch, led, rstb_button, button_center, button_down, unbuf_clk);
 	
 	clock_generator CLOCK_GEN (.clk_100M_raw(unbuf_clk),.clk_100M(cclk));
 	
-	clk_divider div_1hz(.clk_in(cclk), .rst(rst) , .clk_out(clk_1hz));
+	clk_divider div_1hz(.clk_in(cclk), .rst(~rstb) , .clk_out(clk_1hz));
 		
 	timer timer_u(.clk(clk_1hz), .rst(timer_rst), .en(en), .load(load), .init(init), .out(out)); 
 	
