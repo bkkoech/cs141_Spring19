@@ -116,15 +116,15 @@ module test_traffic_light_controller;
 		
 		
 		initial begin
+	
 		// Initialize Inputs
 		error = 0;
 		car_ns = 0; // no car ns
-		car_ew = 0; // no car ew
-		ped = 0; // no ped
-		@(negedge rst);
+		car_ew = 1; // no car ew
+		ped = 1; // no ped
+		@(posedge rst);
 
 		//Idle state
-		@(negedge clk)
 		if (uut.state != `IDLE) begin
 			//$display("ERROR IDLE: NS: %b, EW: %b, PED: %b, Expected %b, %b, %b: ", light_ns, `LIGHT_RED, light_ew, `LIGHT_RED, light_ped, `PED_BOTH);
 			$display("ERROR IDLE. State: %b, Expected:", uut.state, `IDLE);
@@ -132,16 +132,20 @@ module test_traffic_light_controller;
 		end
 		
 		//15s load then to pedestrian
-		@(negedge clk)
+		@(posedge clk)
 		if(uut.state != `15s_LOAD) begin
-			$display("ERROR PEDESTRIAN: State: %b, Expected: %b", uut.state, `15s_LOAD) ;
+			$display("ERROR 15s_LOAD: State: %b, Expected: %b", uut.state, `15s_LOAD) ;
 			error = error + 1;
 		end
 		
-		//pedestrian should last 15s
-		repeat(30)@(negedge clk)
+		//pedestrian
+		@(posedge clk)
+		if(uut.state != `PEDESTRIAN) begin
+			$display("ERROR PEDESTRIAN: State: %b, Expected: %b", uut.state, `PEDESTRIAN) ;
+			error = error + 1;
+		end
 		
-		//expected output: both ped lights are off
+
 		
 		// Wait 100 ns for global reset to finish
 		$display("Finished with %d errors", error);

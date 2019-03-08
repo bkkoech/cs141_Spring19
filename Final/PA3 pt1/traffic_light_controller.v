@@ -42,7 +42,7 @@ module traffic_light_controller(clk, rst, timer_en, timer_load, timer_init, time
 	output reg [3:0] timer_init; 
 	output reg [2:0] light_ns, light_ew; 
 	output reg [1:0] light_ped;
-	output reg timer_load, timer_en; 
+	output reg timer_load, timer_en;
 
 	reg [3:0] state, next_state; 
 	reg NSEW_flag; //sample_reg, sample_reg_next, NSEW_flag; 
@@ -52,7 +52,7 @@ module traffic_light_controller(clk, rst, timer_en, timer_load, timer_init, time
 	always @(posedge clk or posedge rst) begin 
 		if (rst) begin
 			state <= `IDLE; 
-			NSEW_flag <= 10;
+			NSEW_flag <= 1;
 		end
 		else
 			state <= next_state;
@@ -108,17 +108,15 @@ module traffic_light_controller(clk, rst, timer_en, timer_load, timer_init, time
 						next_state = `EW_10s_LOAD;
 					end
 					// if both 1 or 0
-					else if ( ((car_ns & car_ew) | (~car_ns & ~car_ew)) & (NSEW_flag == 2'b01) & (timer_out == 4'b0000)) begin
+					else if ( ((car_ns & car_ew) | (~car_ns & ~car_ew)) & (NSEW_flag) & (timer_out == 4'b0000)) begin
 						next_state = `NS_10s_LOAD;
 					end
-					else if ( ((car_ns & car_ew) | (~car_ns & ~car_ew)) & (NSEW_flag == 2'b00) & (timer_out == 4'b0000)) begin
+					else if ( ((car_ns & car_ew) | (~car_ns & ~car_ew)) & (~NSEW_flag) & (timer_out == 4'b0000)) begin
 						next_state = `EW_10s_LOAD;
 					end
-					else if ((timer_out == 4'b0000) & (NSEW_flag == 2'b11) )begin // if NSEW_Flag = 11;
-						next_state = `NS_GREEN;
-					end
 					else begin
-						//do nothing
+						//stay in the same state
+						next_state = `PEDESTRIAN;
 					end
 				
 				end
@@ -157,13 +155,14 @@ module traffic_light_controller(clk, rst, timer_en, timer_load, timer_init, time
 					timer_en = 1; 
 					timer_load = 0; 
 					timer_init = 4'b1010;
-					NSEW_flag = 2'b0;
+					NSEW_flag = 0;
 
 					if (timer_out == 4'b0000) begin
 						next_state = `NS_5s_LOAD;
 					end
 					else begin
-						// do nothing
+						// Stay in the same state
+						next_state = `NS_GREEN;
 					end
 				
 				end
@@ -176,13 +175,14 @@ module traffic_light_controller(clk, rst, timer_en, timer_load, timer_init, time
 					timer_en = 1; 
 					timer_load = 0; 
 					timer_init = 4'b1010;
-					NSEW_flag = 2'b01;
+					NSEW_flag = 1;
 
 					if (timer_out == 4'b0000) begin
 						next_state = `EW_5s_LOAD;
 					end
 					else begin
-						// do nothing
+						// stay in the same state
+						next_state = `EW_GREEN;
 					end
 				
 				end
@@ -195,7 +195,6 @@ module traffic_light_controller(clk, rst, timer_en, timer_load, timer_init, time
 					timer_en = 0; 
 					timer_load = 1;  //LOAD
 					timer_init = 4'b0101; //5
-					NSEW_flag = 2'b00;
 
 
 					next_state = `NS_YELLOW;
@@ -211,7 +210,6 @@ module traffic_light_controller(clk, rst, timer_en, timer_load, timer_init, time
 					timer_en = 0; 
 					timer_load = 1;  //LOAD
 					timer_init = 4'b0101; //5
-					NSEW_flag = 2'b01;
 
 					next_state = `EW_YELLOW;
 					
@@ -226,7 +224,6 @@ module traffic_light_controller(clk, rst, timer_en, timer_load, timer_init, time
 					timer_en = 1; 
 					timer_load = 0;  //LOAD
 					timer_init = 4'b0101; //5
-					NSEW_flag = 2'b00;
 
 					if (ped & (timer_out == 4'b0000)) begin
 						next_state = `15s_LOAD;
@@ -235,7 +232,8 @@ module traffic_light_controller(clk, rst, timer_en, timer_load, timer_init, time
 						next_state = `EW_10s_LOAD;
 					end
 					else begin
-						//do nothing
+						//stay in the same state
+						next_state = `NS_YELLOW;
 					end
 					
 				
@@ -249,7 +247,6 @@ module traffic_light_controller(clk, rst, timer_en, timer_load, timer_init, time
 					timer_en = 1; 
 					timer_load = 0;  //0
 					timer_init = 4'b0101; //5
-					NSEW_flag = 2'b01;
 
 					if (ped & (timer_out == 4'b0000)) begin
 						next_state = `15s_LOAD;
@@ -258,7 +255,8 @@ module traffic_light_controller(clk, rst, timer_en, timer_load, timer_init, time
 						next_state = `NS_10s_LOAD;
 					end
 					else begin
-						//do nothing
+						//Stay in the same state
+						next_state = `EW_YELLOW;
 					end
 					
 				
