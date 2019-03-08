@@ -45,137 +45,122 @@ module traffic_light_controller(clk, rst, timer_en, timer_load, timer_init, time
 	output reg timer_load, timer_en; 
 
 	reg [3:0] state, next_state; 
-	reg sample_reg, sample_reg_next, NSEW_flag; 
+	reg NSEW_flag; //sample_reg, sample_reg_next, NSEW_flag; 
 	
 	
 	//change to next state and change value of any internal register
 	always @(posedge clk or posedge rst) begin 
 		if (rst) begin
 			state <= `IDLE; 
-			sample_reg <= 0; 
+			NSEW_flag <= 10;
 		end
 		else
 			state <= next_state;
-			sample_reg <= sample_reg_next; 	
 	end 
 	
 	//triggers on change of state or inputs
-	always @(state, timer_out, rst, ped, car_ns, car_ew, from_ns) begin 
+	always @(state, timer_out, rst, ped, car_ns, car_ew) begin 
 		case (state) 
 				`IDLE : begin 
 					
 					//set outputs
-					light_ns <= `LIGHT_RED;
-					light_ew <= `LIGHT_RED;
-					light_ped <= `PED_NEITHER; 
-					timer_en <= 0; 
-					timer_load <= 0; 
-					timer_init <= 4'b0000;
+					light_ns = `LIGHT_RED;
+					light_ew = `LIGHT_RED;
+					light_ped = `PED_NEITHER; 
+					timer_en = 0; 
+					timer_load = 0; 
+					timer_init = 4'b0000;
 
 					
-					next_state <= `15s_LOAD;
-					//sample state transition
-					//if (ped)
-						//next_state <= `SAMPLE_STATE1;
-					//else 
-						//next_state <= `SAMPLE_STATE2; 
-					
-					//set next value for internal registers
-					//sample_reg_next <= 1; 
+					next_state = `15s_LOAD;
 				end
 				
 				`15s_LOAD : begin 
 					//set outputs
-					light_ns <= `LIGHT_RED;
-					light_ew <= `LIGHT_RED;
-					light_ped <= `PED_NEITHER; 
-					timer_en <= 0; 
-					timer_load <= 1; 
-					timer_init <= 4'b1111;
+					light_ns = `LIGHT_RED;
+					light_ew = `LIGHT_RED;
+					light_ped = `PED_NEITHER; 
+					timer_en = 0; 
+					timer_load = 1; 
+					timer_init = 4'b1111;
 
 					
-					next_state <= `PEDESTRIAN;
-					//sample state transition
-					//if (ped)
-						//next_state <= `SAMPLE_STATE1;
-					//else 
-						//next_state <= `SAMPLE_STATE2; 
-					
-					//set next value for internal registers
-					//sample_reg_next <= 1; 
+					next_state = `PEDESTRIAN;
 				
 				end
 				
 				`PEDESTRIAN : begin 
 					//set outputs
-					light_ns <= `LIGHT_RED;
-					light_ew <= `LIGHT_RED;
-					light_ped <= `PED_BOTH; 
-					timer_en <= 1; 
-					timer_load <= 0; 
-					timer_init <= 4'b1111;
+					light_ns = `LIGHT_RED;
+					light_ew = `LIGHT_RED;
+					light_ped = `PED_BOTH; 
+					timer_en = 1; 
+					timer_load = 0; 
+					timer_init = 4'b1111;
 
 					
 					//if 1 0 
 					if (car_ns & ~car_ew & (timer_out == 4'b0000)) begin
-						next_state <= `NS_10s_LOAD;
+						next_state = `NS_10s_LOAD;
 					end
 					// if 0 1
 					else if (~car_ns & car_ew & (timer_out == 4'b0000)) begin
-						next_state <= `EW_10s_LOAD;
+						next_state = `EW_10s_LOAD;
 					end
 					// if both 1 or 0
-					else if ((car_ns & car_ew) | (~car_ns & ~car_ew) & NSEW_flag) begin
-						next_state <= `NS_10s_LOAD;
+					else if ( ((car_ns & car_ew) | (~car_ns & ~car_ew)) & (NSEW_flag == 2'b01) & (timer_out == 4'b0000)) begin
+						next_state = `NS_10s_LOAD;
 					end
-					else begin //((car_ns & car_ew) | (~car_ns & ~car_ew) & ~NSEW_flag)
-						next_state <= `NS_10s_LOAD;
+					else if ( ((car_ns & car_ew) | (~car_ns & ~car_ew)) & (NSEW_flag == 2'b00) & (timer_out == 4'b0000)) begin
+						next_state = `EW_10s_LOAD;
 					end
-					//next_state <= `SAMPLE_STATE2; 
-					
-					//set next value for internal registers
-					//sample_reg_next <= 1; 
+					else if ((timer_out == 4'b0000) & (NSEW_flag == 2'b11) )begin // if NSEW_Flag = 11;
+						next_state = `NS_GREEN;
+					end
+					else begin
+						//do nothing
+					end
 				
 				end
 				
 				`NS_10s_LOAD : begin 
 					//set outputs
-					light_ns <= `LIGHT_RED;
-					light_ew <= `LIGHT_RED;
-					light_ped <= `PED_BOTH; 
-					timer_en <= 0; 
-					timer_load <= 1; 
-					timer_init <= 4'b1010;
+					light_ns = `LIGHT_RED;
+					light_ew = `LIGHT_RED;
+					light_ped = `PED_BOTH; 
+					timer_en = 0; 
+					timer_load = 1; 
+					timer_init = 4'b1010;
 
-					next_state <= `NS_GREEN;
+					next_state = `NS_GREEN;
 				
 				end
 				
 				`EW_10s_LOAD : begin 
 					//set outputs
-					light_ns <= `LIGHT_RED;
-					light_ew <= `LIGHT_RED;
-					light_ped <= `PED_BOTH; 
-					timer_en <= 0; 
-					timer_load <= 1; 
-					timer_init <= 4'b1010;
+					light_ns = `LIGHT_RED;
+					light_ew = `LIGHT_RED;
+					light_ped = `PED_BOTH; 
+					timer_en = 0; 
+					timer_load = 1; 
+					timer_init = 4'b1010;
 
-					next_state <= `EW_GREEN;
+					next_state = `EW_GREEN;
 				
 				end
 				
 				`NS_GREEN : begin 
 					//set outputs
-					light_ns <= `LIGHT_GREEN; //GREEN
-					light_ew <= `LIGHT_RED; //RED
-					light_ped <= `PED_NS; //NS PED
-					timer_en <= 1; 
-					timer_load <= 0; 
-					timer_init <= 4'b1010;
-					NSEW_flag <= 0;
+					light_ns = `LIGHT_GREEN; //GREEN
+					light_ew = `LIGHT_RED; //RED
+					light_ped = `PED_NS; //NS PED
+					timer_en = 1; 
+					timer_load = 0; 
+					timer_init = 4'b1010;
+					NSEW_flag = 2'b0;
 
 					if (timer_out == 4'b0000) begin
-						next_state <= `NS_5s_LOAD;
+						next_state = `NS_5s_LOAD;
 					end
 					else begin
 						// do nothing
@@ -185,16 +170,16 @@ module traffic_light_controller(clk, rst, timer_en, timer_load, timer_init, time
 					
 				`EW_GREEN : begin 
 					//set outputs
-					light_ns <= `LIGHT_RED; //RED
-					light_ew <= `LIGHT_GREEN; //GREEN
-					light_ped <= `PED_EW; //EW PED
-					timer_en <= 1; 
-					timer_load <= 0; 
-					timer_init <= 4'b1010;
-					NSEW_flag <= 1;
+					light_ns = `LIGHT_RED; //RED
+					light_ew = `LIGHT_GREEN; //GREEN
+					light_ped = `PED_EW; //EW PED
+					timer_en = 1; 
+					timer_load = 0; 
+					timer_init = 4'b1010;
+					NSEW_flag = 2'b01;
 
 					if (timer_out == 4'b0000) begin
-						next_state <= `EW_5s_LOAD;
+						next_state = `EW_5s_LOAD;
 					end
 					else begin
 						// do nothing
@@ -204,50 +189,50 @@ module traffic_light_controller(clk, rst, timer_en, timer_load, timer_init, time
 				
 				`NS_5s_LOAD : begin 
 					//set outputs
-					light_ns <= `LIGHT_RED; //GREEN
-					light_ew <= `LIGHT_GREEN; //RED
-					light_ped <= `PED_EW; //NS PED
-					timer_en <= 0; 
-					timer_load <= 1;  //LOAD
-					timer_init <= 4'b0101; //5
-					NSEW_flag <= 0;
+					light_ns = `LIGHT_RED; //GREEN
+					light_ew = `LIGHT_GREEN; //RED
+					light_ped = `PED_EW; //NS PED
+					timer_en = 0; 
+					timer_load = 1;  //LOAD
+					timer_init = 4'b0101; //5
+					NSEW_flag = 2'b00;
 
 
-					next_state <= `NS_YELLOW;
+					next_state = `NS_YELLOW;
 
 				
 				end
 				
 				`EW_5s_LOAD : begin 
 					//set outputs
-					light_ns <= `LIGHT_RED; //RED
-					light_ew <= `LIGHT_GREEN; //GREEN
-					light_ped <= `PED_EW; //EW PED
-					timer_en <= 0; 
-					timer_load <= 1;  //LOAD
-					timer_init <= 4'b0101; //5
-					NSEW_flag <= 1;
+					light_ns = `LIGHT_RED; //RED
+					light_ew = `LIGHT_GREEN; //GREEN
+					light_ped = `PED_EW; //EW PED
+					timer_en = 0; 
+					timer_load = 1;  //LOAD
+					timer_init = 4'b0101; //5
+					NSEW_flag = 2'b01;
 
-					next_state <= `EW_YELLOW;
+					next_state = `EW_YELLOW;
 					
 				
 				end
 				
 				`NS_YELLOW : begin 
 					//set outputs
-					light_ns <= `LIGHT_YELLOW; //YELLOW
-					light_ew <= `LIGHT_RED; //RED
-					light_ped <= `PED_NS; //NS PED
-					timer_en <= 1; 
-					timer_load <= 0;  //LOAD
-					timer_init <= 4'b0101; //5
-					NSEW_flag = 0;
+					light_ns = `LIGHT_YELLOW; //YELLOW
+					light_ew = `LIGHT_RED; //RED
+					light_ped = `PED_NS; //NS PED
+					timer_en = 1; 
+					timer_load = 0;  //LOAD
+					timer_init = 4'b0101; //5
+					NSEW_flag = 2'b00;
 
 					if (ped & (timer_out == 4'b0000)) begin
-						next_state <= `15s_LOAD;
+						next_state = `15s_LOAD;
 					end
 					else if (~ped & (timer_out == 4'b0000)) begin //(~ped & (timer_out == 4'b0000)
-						next_state <= `EW_10s_LOAD;
+						next_state = `EW_10s_LOAD;
 					end
 					else begin
 						//do nothing
@@ -258,19 +243,19 @@ module traffic_light_controller(clk, rst, timer_en, timer_load, timer_init, time
 				
 				`EW_YELLOW : begin 
 					//set outputs
-					light_ns <= `LIGHT_RED; //RED
-					light_ew <= `LIGHT_YELLOW; //YELLOW
-					light_ped <= `PED_EW; //EW PED
-					timer_en <= 1; 
-					timer_load <= 0;  //0
-					timer_init <= 4'b0101; //5
-					NSEW_flag <= 1;
+					light_ns = `LIGHT_RED; //RED
+					light_ew = `LIGHT_YELLOW; //YELLOW
+					light_ped = `PED_EW; //EW PED
+					timer_en = 1; 
+					timer_load = 0;  //0
+					timer_init = 4'b0101; //5
+					NSEW_flag = 2'b01;
 
 					if (ped & (timer_out == 4'b0000)) begin
-						next_state <= `15s_LOAD;
+						next_state = `15s_LOAD;
 					end
 					else if (~ped & (timer_out == 4'b0000)) begin //(~ped & (timer_out == 4'b0000)
-						next_state <= `NS_10s_LOAD;
+						next_state = `NS_10s_LOAD;
 					end
 					else begin
 						//do nothing
@@ -281,16 +266,15 @@ module traffic_light_controller(clk, rst, timer_en, timer_load, timer_init, time
 
 				
 				default : begin 
-					light_ns <= `LIGHT_RED;
-					light_ew <= `LIGHT_RED;
-					light_ped <= `PED_NEITHER; 
-					timer_en <= 0; 
-					timer_load <= 1;
-					timer_init <= 4'b1111;	
+					light_ns = `LIGHT_RED;
+					light_ew = `LIGHT_RED;
+					light_ped = `PED_NEITHER; 
+					timer_en = 0; 
+					timer_load = 1;
+					timer_init = 4'b1111;	
 					
-					next_state <= `IDLE; 
+					next_state = `IDLE; 
 					
-					sample_reg_next <= 0; 
 				end
 		endcase
 	end 
