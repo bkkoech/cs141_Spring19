@@ -126,7 +126,7 @@ module traffic_light_controller(clk, rst, timer_en, timer_load, timer_init, time
 					//set outputs
 					light_ns = `LIGHT_RED;
 					light_ew = `LIGHT_RED;
-					light_ped = `PED_BOTH; 
+					light_ped = `PED_NS; 
 					timer_en = 0; 
 					timer_load = 1; 
 					timer_init = 4'b1010;
@@ -139,7 +139,7 @@ module traffic_light_controller(clk, rst, timer_en, timer_load, timer_init, time
 					//set outputs
 					light_ns = `LIGHT_RED;
 					light_ew = `LIGHT_RED;
-					light_ped = `PED_BOTH; 
+					light_ped = `PED_EW; 
 					timer_en = 0; 
 					timer_load = 1; 
 					timer_init = 4'b1010;
