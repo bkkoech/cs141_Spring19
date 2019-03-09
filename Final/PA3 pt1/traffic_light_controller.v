@@ -11,7 +11,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 //define states
 `define IDLE 4'b0000
-`define 15s_LOAD 4'b0001
+`define ped_15s_LOAD 4'b0001
 `define PEDESTRIAN 4'b0010
 `define NS_10s_LOAD 4'b0011
 `define EW_10s_LOAD 4'b0100
@@ -45,24 +45,25 @@ module traffic_light_controller(clk, rst, timer_en, timer_load, timer_init, time
 	output reg timer_load, timer_en;
 
 	reg [3:0] state, next_state; 
-	reg NSEW_flag; //sample_reg, sample_reg_next, NSEW_flag; 
+	reg NSEW_flag; // NSEW_flag; 
 	
 	
 	//change to next state and change value of any internal register
 	always @(posedge clk or posedge rst) begin 
 		if (rst) begin
 			state <= `IDLE; 
-			NSEW_flag <= 1;
 		end
 		else
 			state <= next_state;
 	end 
 	
 	//triggers on change of state or inputs
-	always @(state, timer_out, rst, ped, car_ns, car_ew) begin 
+	always @(state, timer_out, rst, ped, car_ns, car_ew, NSEW_flag) begin 
 		case (state) 
 				`IDLE : begin 
-					
+					if(~NSEW_flag) begin
+						NSEW_flag = 1;
+					end
 					//set outputs
 					light_ns = `LIGHT_RED;
 					light_ew = `LIGHT_RED;
@@ -72,10 +73,10 @@ module traffic_light_controller(clk, rst, timer_en, timer_load, timer_init, time
 					timer_init = 4'b0000;
 
 					
-					next_state = `15s_LOAD;
+					next_state = `ped_15s_LOAD;
 				end
 				
-				`15s_LOAD : begin 
+				`ped_15s_LOAD : begin 
 					//set outputs
 					light_ns = `LIGHT_RED;
 					light_ew = `LIGHT_RED;
@@ -189,9 +190,9 @@ module traffic_light_controller(clk, rst, timer_en, timer_load, timer_init, time
 				
 				`NS_5s_LOAD : begin 
 					//set outputs
-					light_ns = `LIGHT_RED; //GREEN
-					light_ew = `LIGHT_GREEN; //RED
-					light_ped = `PED_EW; //NS PED
+					light_ns = `LIGHT_GREEN; //GREEN
+					light_ew = `LIGHT_RED; //RED
+					light_ped = `PED_NS; //NS PED
 					timer_en = 0; 
 					timer_load = 1;  //LOAD
 					timer_init = 4'b0101; //5
@@ -226,7 +227,7 @@ module traffic_light_controller(clk, rst, timer_en, timer_load, timer_init, time
 					timer_init = 4'b0101; //5
 
 					if (ped & (timer_out == 4'b0000)) begin
-						next_state = `15s_LOAD;
+						next_state = `ped_15s_LOAD;
 					end
 					else if (~ped & (timer_out == 4'b0000)) begin //(~ped & (timer_out == 4'b0000)
 						next_state = `EW_10s_LOAD;
@@ -249,7 +250,7 @@ module traffic_light_controller(clk, rst, timer_en, timer_load, timer_init, time
 					timer_init = 4'b0101; //5
 
 					if (ped & (timer_out == 4'b0000)) begin
-						next_state = `15s_LOAD;
+						next_state = `ped_15s_LOAD;
 					end
 					else if (~ped & (timer_out == 4'b0000)) begin //(~ped & (timer_out == 4'b0000)
 						next_state = `NS_10s_LOAD;

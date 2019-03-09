@@ -3,7 +3,7 @@
 
 //define states
 `define IDLE 4'b0000
-`define 15s_LOAD 4'b0001
+`define ped_15s_LOAD 4'b0001
 `define PEDESTRIAN 4'b0010
 `define NS_10s_LOAD 4'b0011
 `define EW_10s_LOAD 4'b0100
@@ -120,8 +120,8 @@ module test_traffic_light_controller;
 		// Initialize Inputs
 		error = 0;
 		car_ns = 0; // no car ns
-		car_ew = 1; // no car ew
-		ped = 1; // no ped
+		car_ew = 0; // no car ew
+		ped = 0; // no ped
 		@(posedge rst);
 
 		//Idle state
@@ -133,8 +133,8 @@ module test_traffic_light_controller;
 		
 		//15s load then to pedestrian
 		@(posedge clk)
-		if(uut.state != `15s_LOAD) begin
-			$display("ERROR 15s_LOAD: State: %b, Expected: %b", uut.state, `15s_LOAD) ;
+		if(uut.state != `ped_15s_LOAD) begin
+			$display("ERROR 15s_LOAD: State: %b, Expected: %b", uut.state, `ped_15s_LOAD) ;
 			error = error + 1;
 		end
 		
