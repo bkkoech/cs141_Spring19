@@ -6,7 +6,7 @@
 #    python assembler_template.py [asm file]
 
 import sys, re
-DEBUG = True
+DEBUG = False
 
 def bin_to_hex(x):
   y = hex(int(x,2))[2:]
@@ -132,7 +132,6 @@ def main():
   me, fname = sys.argv
 
   f = open(fname, "r")
-  labels = {}        # Map from label to its address.
   parsed_lines = []  # List of parsed instructions.
   address = 0        # Track the current address of the instruction.
   line_count = 0     # Number of lines.
@@ -188,16 +187,10 @@ def main():
       print(each)
 
   machine = ""  # Current machine code word.
-  print("MACHINE CODE: -----")
   for line in parsed_lines:
-    if DEBUG:
-        # print R-type
-        print("R-type: " + line['instruction'])
-
     if line['instruction'] == 'nop':
       word =  8*'0' + "\n"
       machine += word
-      print(word)
     elif line['instruction'] in rtypes:
       # Encode an R-type instruction.
       # R type instructions with 3 arguments
@@ -205,34 +198,25 @@ def main():
         # 0 6bit op_code, 5bit rs, 5bit rt, 5bit rd,0 5bit shamt, 6bit func
         word = dec_to_bin(0,6) + registers[line['arg1']] + registers[line['arg2']] + registers[line['arg0']] + dec_to_bin(0,5) + function_codes[line['instruction']] + "\n"
         machine += word
-        print(word)
       # R-type instruction with 1 argument
       elif line['instruction'] == 'jr':
         #0 6bit op_code, 5bit reg, 0 5bit reg, 0 5bit reg, 0 5bit shamt, 6bit func
         word = dec_to_bin(0,6) + registers[line['arg0']] + dec_to_bin(0,5) + dec_to_bin(0,5) + dec_to_bin(0,5) + function_codes[line['instruction']] + "\n"
         machine += word
-        print(word)
       elif line['instruction'] in ['sll', 'sra', 'srl']:
         #0 6 bit op_code, 5bit rs, 5bit rt, 0 5bit rd, 5 bit shamt, 6bit func
         word = dec_to_bin(0,6) +  dec_to_bin(0,5) + registers[line['arg1']] + registers[line['arg0']]  + dec_to_bin(line['arg2'],5) + function_codes[line['instruction']] + "\n"
         machine += word
-        print(word)
       else: 
         # in case non of the rtypes match
-        if DEBUG:
-          print("Error: R-type, Type Not converted to machine code")
-          print(line['instruction'])
+        print("Error: R-type, Type Not converted to machine code")
+        print(line['instruction'])
     else:
-      if DEBUG:
-        # print non-R-type
-        print("non-R-type: " + line['instruction'])
-
       # Encode a non-R-type instruction.
       if line['instruction'] in ['addi', 'andi', 'ori', 'xori', 'slti']:
         # 6bit op_code, 5bit rs, 5bit rt , 16bit imm
         word = op_codes[line['instruction']] + registers[line['arg1']] + registers[line['arg0']] + dec_to_bin(line['arg2'],16) + "\n"
         machine += word
-        print(word)
       elif line['instruction'] in ['beq', 'bne']:
         #6bit op_code, 5bit rs, 5bit rt, 16bit label
         jump_label = line['arg2']
@@ -245,7 +229,6 @@ def main():
 
         word = op_codes[line['instruction']] + registers[line['arg0']] + registers[line['arg1']] + dec_to_bin(jump_to_addr, 16) + "\n"
         machine += word
-        print(word)
       elif line['instruction'] in ['j', 'jal']:
         #6bit op_code, 26bit label
         jump_label = line['arg0']
@@ -258,31 +241,29 @@ def main():
 
         word = op_codes[line['instruction']] + dec_to_bin(jump_to_addr, 26) + "\n"
         machine += word
-        print(word)
       elif line['instruction'] in ['lw', 'sw']:
         #6bit op_code, 5bit rs, 5bit rt, 16bit imm
         imm = line['arg1'].split('(')[0]
         rs = line['arg1'].split('(')[1].split(')')[0]
         word = op_codes[line['instruction']] + registers[rs] + registers[line['arg0']] + dec_to_bin(imm, 16) + "\n"
         machine += word
-        print(word)
       else:
         #in case non of them match
-        if DEBUG:
-          print("Error: non-R-type, Type mismatch, Not converted to machine code")
-          print(line['instruction'])
+        print("Error: I/J-type, Type mismatch, Not converted to machine code")
+        print(line['instruction'])
+    
+    if DEBUG:
+      print("Instruction: " + line['instruction'])
+      print(word)
 
-
-
-  print("This is the machine ----")
-  print(machine)
   f = open("output.machine", "w")
   machine = machine.split()
   for line in machine:
-    print("line: " + line)
     f.write(bin_to_hex(line))
     f.write("\n")
   f.close()
+
+  print('------DONE------')
 
 if __name__ == "__main__":
   main()
