@@ -190,6 +190,10 @@ def main():
   machine = ""  # Current machine code word.
   print("MACHINE CODE: -----")
   for line in parsed_lines:
+    if DEBUG:
+        # print R-type
+        print("R-type: " + line['instruction'])
+
     if line['instruction'] == 'nop':
       word =  8*'0' + "\n"
       machine += word
@@ -216,13 +220,29 @@ def main():
       else: 
         # in case non of the rtypes match
         if DEBUG:
-          print("Type not converted to machine code")
+          print("Error: R-type, Type Not converted to machine code")
           print(line['instruction'])
     else:
       if DEBUG:
-        print("non-R-type" + line['instruction'])
+        # print non-R-type
+        print("non-R-type: " + line['instruction'])
+        
       # Encode a non-R-type instruction.
-      # 6bit op_code, 5bit rs, 5bit rt , 16bit imm
+      if line['instruction'] in ['addi', 'andi', 'ori', 'xori', 'slti']:
+        # 6bit op_code, 5bit rs, 5bit rt , 16bit imm
+      elif line['instruction'] in ['beq', 'bne']:
+        #6bit op_code, 5bit rs, 5bit rt, 16bit label
+      elif line['instruction'] in ['j', 'jal']:
+        #6bit op_code, 26bit label
+      elif line['instruction'] in ['lw', 'sw']:
+        #6bit op_code, 5bit rs, 5bit rt, imm
+      else:
+        #in case non of them match
+        if DEBUG:
+          print("Error: non-R-type, Type mismatch, Not converted to machine code")
+          print(line['instruction'])
+
+
 
   #print(machine)
 
