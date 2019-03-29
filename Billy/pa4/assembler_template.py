@@ -202,19 +202,19 @@ def main():
       # Encode an R-type instruction.
       # R type instructions with 3 arguments
       if line['instruction'] in ['add', 'sub', 'and', 'or', 'xor', 'nor', 'slt']:
-        # 0 6bit op_code, 5bit reg, 5bit reg, 5bit reg,0 5bit shamt, 6bit func
-        word = dec_to_bin(0,6) + registers[line['arg0']] + registers[line['arg1']] + registers[line['arg2']] + dec_to_bin(0,5)+function_codes[line['instruction']] + "\n"
+        # 0 6bit op_code, 5bit rs, 5bit rt, 5bit rd,0 5bit shamt, 6bit func
+        word = dec_to_bin(0,6) + registers[line['arg1']] + registers[line['arg2']] + registers[line['arg0']] + dec_to_bin(0,5) + function_codes[line['instruction']] + "\n"
         machine += word
         print(word)
       # R-type instruction with 1 argument
       elif line['instruction'] == 'jr':
         #0 6bit op_code, 5bit reg, 0 5bit reg, 0 5bit reg, 0 5bit shamt, 6bit func
-        word = dec_to_bin(0,6) + registers[line['arg0']] + dec_to_bin(0,5) + dec_to_bin(0,5) + dec_to_bin(0,6) + function_codes[line['instruction']] + "\n"
+        word = dec_to_bin(0,6) + registers[line['arg0']] + dec_to_bin(0,5) + dec_to_bin(0,5) + dec_to_bin(0,5) + function_codes[line['instruction']] + "\n"
         machine += word
         print(word)
       elif line['instruction'] in ['sll', 'sra', 'srl']:
-        #0 6 bit op_code, 5bit rd, 5bit rt, 0 5bit rs, 5 bit shamt, 6bit func
-        word = dec_to_bin(0,6) + registers[line['arg0']] + registers[line['arg1']] + dec_to_bin(0,5) + dec_to_bin(line['arg2'],5) + function_codes[line['instruction']] + "\n"
+        #0 6 bit op_code, 5bit rs, 5bit rt, 0 5bit rd, 5 bit shamt, 6bit func
+        word = dec_to_bin(0,6) +  dec_to_bin(0,5) + registers[line['arg1']] + registers[line['arg0']]  + dec_to_bin(line['arg2'],5) + function_codes[line['instruction']] + "\n"
         machine += word
         print(word)
       else: 
@@ -226,16 +226,46 @@ def main():
       if DEBUG:
         # print non-R-type
         print("non-R-type: " + line['instruction'])
-        
+
       # Encode a non-R-type instruction.
       if line['instruction'] in ['addi', 'andi', 'ori', 'xori', 'slti']:
         # 6bit op_code, 5bit rs, 5bit rt , 16bit imm
+        word = op_codes[line['instruction']] + registers[line['arg1']] + registers[line['arg0']] + dec_to_bin(line['arg2'],16) + "\n"
+        machine += word
+        print(word)
       elif line['instruction'] in ['beq', 'bne']:
         #6bit op_code, 5bit rs, 5bit rt, 16bit label
+        jump_label = line['arg2']
+        jump_to_addr = 0
+
+        for each_line in parsed_lines:
+          if each_line['label'] == jump_label:
+            # find line number of label and add offset from PA4 instruction ie 0x00400000
+            jump_to_addr = int(each_line['line_number']) - int(line['line_number']) - 1
+
+        word = op_codes[line['instruction']] + registers[line['arg0']] + registers[line['arg1']] + dec_to_bin(jump_to_addr, 16) + "\n"
+        machine += word
+        print(word)
       elif line['instruction'] in ['j', 'jal']:
         #6bit op_code, 26bit label
+        jump_label = line['arg0']
+        jump_to_addr = 0
+
+        for each_line in parsed_lines:
+          if each_line['label'] == jump_label:
+            # find line number of label and add offset from PA4 instruction ie 0x00400000
+            jump_to_addr =  (int(each_line['line_number']) -1 ) + (0x00400000/4)  
+
+        word = op_codes[line['instruction']] + dec_to_bin(jump_to_addr, 26) + "\n"
+        machine += word
+        print(word)
       elif line['instruction'] in ['lw', 'sw']:
-        #6bit op_code, 5bit rs, 5bit rt, imm
+        #6bit op_code, 5bit rs, 5bit rt, 16bit imm
+        imm = line['arg1'].split('(')[0]
+        rs = line['arg1'].split('(')[1].split(')')[0]
+        word = op_codes[line['instruction']] + registers[rs] + registers[line['arg0']] + dec_to_bin(imm, 16) + "\n"
+        machine += word
+        print(word)
       else:
         #in case non of them match
         if DEBUG:
@@ -244,7 +274,15 @@ def main():
 
 
 
-  #print(machine)
+  print("This is the machine ----")
+  print(machine)
+  f = open("output.machine", "w")
+  machine = machine.split()
+  for line in machine:
+    print("line: " + line)
+    f.write(bin_to_hex(line))
+    f.write("\n")
+  f.close()
 
 if __name__ == "__main__":
   main()
