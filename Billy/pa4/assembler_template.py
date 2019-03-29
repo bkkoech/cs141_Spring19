@@ -175,9 +175,9 @@ def main():
 
       # store arguments 
       arguments = line[1:]
-      for arg in arguments:
+      for i in range(len(arguments)):
         # reg0 reg1 etc
-        line_attr['arg' + str(arguments.index(arg))] = arg
+        line_attr['arg' + str(i)] = arguments[i]
 
       # Finally, add this dict to the complete list of instructions.
       parsed_lines.append(line_attr)
@@ -210,7 +210,7 @@ def main():
         print(word)
       elif line['instruction'] in ['sll', 'sra', 'srl']:
         #0 6 bit op_code, 5bit rd, 5bit rt, 0 5bit rs, 5 bit shamt, 6bit func
-        word = dec_to_bin(0,6) + registers[line['arg0']] + registers[line['arg1']] + dec_to_bin(0,5) + registers[line['arg2']] + function_codes[line['instruction']] + "\n"
+        word = dec_to_bin(0,6) + registers[line['arg0']] + registers[line['arg1']] + dec_to_bin(0,5) + dec_to_bin(line['arg2'],5) + function_codes[line['instruction']] + "\n"
         machine += word
         print(word)
       else: 
