@@ -15,8 +15,7 @@
 //
 //
 //////////////////////////////////////////////////////////////////////////////////
-module alu_control(clk, rst, ALUOp, ALUControl, funct);
-	input wire clk, rst;
+module alu_control(ALUOp, ALUControl, funct);
 	input wire [1:0] ALUOp;
 	input wire [5:0] funct;
 	output wire [3:0] ALUControl;

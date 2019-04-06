@@ -69,6 +69,10 @@ module test_control_module;
 		initial
 		begin
 			rst = 0;
+			#(T/2);
+			rst = 1;
+			#(T/2);
+			rst = 0;
 		end
 		
 		//****************************************************************
