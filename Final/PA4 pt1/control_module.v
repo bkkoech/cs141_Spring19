@@ -20,12 +20,13 @@
 //useful constants
 
 module control_module(clk, rst, MemWrite, IRWrite, MemtoReg, RegDst, RegWrite, 
-								ALUSrcA, ALUSrcB, ALUOp, PCSource, PCWriteCond, PCWrite, IorD, OP_code);
+								ALUSrcA, ALUSrcB, ALUOp, PCSource, PCWriteCond, PCWrite, IorD, Op_code);
 	parameter N = 32;
 	//port definitions
-	input wire clk, rst, Op_code;
+	input wire clk, rst;
+	input wire [5:0] Op_code;
 	//use reg in procedural
-	output reg MemRead, MemWrite, IRWrite, MemtoReg, RegDst, RegWrite, ALUSrcA, PCWriteCond, PCWrite, IorD;
+	output reg MemWrite, IRWrite, MemtoReg, RegDst, RegWrite, ALUSrcA, PCWriteCond, PCWrite, IorD;
 	output reg [1:0] ALUOp,PCSource;
 	output reg [2:0] ALUSrcB;
 
@@ -50,7 +51,7 @@ module control_module(clk, rst, MemWrite, IRWrite, MemtoReg, RegDst, RegWrite,
 						// set outputs
 						// MULTIPLEXER SELECTS:
 						IorD = 0;
-						ALSrcA = 0;
+						ALUSrcA = 0;
 						ALUSrcB = 3'b001;
 						ALUOp = 2'b00;
 						PCSource = 2'b00;
@@ -96,7 +97,7 @@ module control_module(clk, rst, MemWrite, IRWrite, MemtoReg, RegDst, RegWrite,
 						// set outputs
 						
 						// MULTIPLEXER SELECTS:
-						ALSrcA = 1;
+						ALUSrcA = 1;
 						ALUSrcB = 3'b000;
 						ALUOp = 2'b10;
 						//dont cares
@@ -125,7 +126,7 @@ module control_module(clk, rst, MemWrite, IRWrite, MemtoReg, RegDst, RegWrite,
 						RegDst = 1;
 						MemtoReg = 0;
 						//dont cares
-						ALSrcA = 1;
+						ALUSrcA = 1;
 						ALUSrcB = 3'b000;
 						ALUOp = 2'b10;
 						IorD = 0;
@@ -142,7 +143,7 @@ module control_module(clk, rst, MemWrite, IRWrite, MemtoReg, RegDst, RegWrite,
 						PCWriteCond = 0; // Also known as Branch
 						
 						//next state
-						next_state = WRITEBACK_WAIT_STATE;
+						next_state = `WRITEBACK_WAIT_STATE;
 					end
 					`WRITEBACK_WAIT_STATE : begin
 						
