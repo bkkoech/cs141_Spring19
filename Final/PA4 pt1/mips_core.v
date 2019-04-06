@@ -80,8 +80,6 @@ module mips_core(clk, rst, MemWrite, read_data, write_data, write_addr);
 	// WRITE INTERNAL WIRINGs
 	// ALU Controller Instantiation
 	alu_control ALU_CONTROL(
-		.clk(clk),
-		.rst(rst),
 		.ALUOp(ALUOp),
 		.ALUControl(),
 		.funct()
