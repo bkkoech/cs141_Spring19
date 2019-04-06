@@ -88,10 +88,9 @@
     <!-- Do not hand-edit this section, as it will be overwritten when the    -->
     <!-- project is analyzed based on files automatically identified as       -->
     <!-- include files.                                                       -->
-    <file xil_pn:name="mips_funct_defines.v" xil_pn:type="FILE_VERILOG"/>
-    <file xil_pn:name="mips_op_codes_defines.v" xil_pn:type="FILE_VERILOG"/>
     <file xil_pn:name="alu_defines.v" xil_pn:type="FILE_VERILOG"/>
     <file xil_pn:name="mips_memory_space_defines.v" xil_pn:type="FILE_VERILOG"/>
+    <file xil_pn:name="mips_op_codes_defines.v" xil_pn:type="FILE_VERILOG"/>
   </autoManagedFiles>
 
   <properties>
