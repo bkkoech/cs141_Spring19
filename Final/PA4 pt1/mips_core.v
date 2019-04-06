@@ -21,8 +21,9 @@ module mips_core(clk, rst, MemWrite, read_data, write_data, write_addr);
 	
 	// Internal Wires
 	// Control Signal Definitions
-	wire MemRead, MemWrite, IRWrite, MemtoReg, RegDst, RegWrite, ALUSrcA, ALUSrcB, PCSource, PCWriteCond, PCWrite, IorD;
-	wire [1:0] ALUOp;
+	wire MemWrite, IRWrite, MemtoReg, RegDst, RegWrite, ALUSrcA, PCWriteCond, PCWrite, IorD;
+	wire [1:0] ALUOp, PCSource;
+	wire [2:0] ALUSrcB;
 	// register file output wires
 	wire [N-1:0] rd_data1, rd_data2, wr_data;
 	// register input addr wires 
@@ -90,7 +91,6 @@ module mips_core(clk, rst, MemWrite, read_data, write_data, write_addr);
 	control_module CONTROL(
 		.clk(clk),
 		.rst(rst),
-		.MemRead(MemRead),
 		.MemWrite(MemWrite),
 		.IRWrite(IRWrite),
 		.MemtoReg(MemtoReg),
