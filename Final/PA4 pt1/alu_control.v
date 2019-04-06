@@ -1,8 +1,9 @@
 `timescale 1ns / 1ps
 `default_nettype none //helps catch typo-related bugs
 
-`include "mips_funct_defines.v"
+`include "alu_defines.v"
 `include "mips_op_codes_defines.v"
+
 
 //////////////////////////////////////////////////////////////////////////////////
 // 
@@ -21,11 +22,54 @@ module alu_control(clk, rst, ALUOp, ALUControl, funct);
 	
 	always @*
 	begin
-		if (ALUOp == 2'b00)
+		if (ALUOp == 2'b00) // add
+			assign ALUControl = `ALU_OP_ADD;
 
 		else if (ALUOp == 2'b01)
+			assign ALUControl = `ALU_OP_SUB;
 
-		else
+		else if (ALUOp == 2'b10)
+			// Do R-Type
+			case(funct)
+				`FUNCT_ADD : begin
+					assign ALUControl = `ALU_OP_ADD;
+				end
+
+				`FUNCT_SUB : begin
+					assign ALUControl = `ALU_OP_SUB;
+				end
+
+				`FUNCT_SLL : begin
+					assign ALUControl = `ALU_OP_SLL;
+				end
+				
+				`FUNCT_SRA : begin
+					assign ALUControl = `ALU_OP_SRL;
+				end
+
+				`FUNCT_JR : begin
+					assign ALUControl = `ALU_OP_ADD;
+				end
+
+				`FUNCT_AND : begin
+					assign ALUControl = `ALU_OP_AND;
+				end
+
+				`FUNCT_OR : begin
+					assign ALUControl = `ALU_OP_OR;
+				end
+
+				`FUNCT_XOR : begin
+					assign ALUControl = `ALU_OP_XOR;
+				end
+
+				`FUNCT_NOR : begin
+					assign ALUControl = `ALU_OP_NOR;
+				end
+
+				`FUNCT_SLT : begin
+					assign ALUControl = `ALU_OP_SLT;
+				end
 	end
 
 
