@@ -68,7 +68,7 @@ module control_module(clk, rst, MemWrite, IRWrite, MemtoReg, RegDst, RegWrite,
 						PCWriteCond = 0; // Also known as Branch
 						
 						//wait one clock cylce for memory to be fetched
-						next_state = DECODE_STATE;
+						next_state = `DECODE_STATE;
 					end
 
 					`DECODE_STATE : begin
@@ -116,7 +116,7 @@ module control_module(clk, rst, MemWrite, IRWrite, MemtoReg, RegDst, RegWrite,
 						PCWriteCond = 0; // Also known as Branch
 						
 						//next state
-						next_state = ALU_WRITEBACK_STATE;
+						next_state = `ALU_WRITEBACK_STATE;
 					end
 					`ALU_WRITEBACK_STATE : begin
 						// set outputs
@@ -149,7 +149,7 @@ module control_module(clk, rst, MemWrite, IRWrite, MemtoReg, RegDst, RegWrite,
 						//Wait for writeback to complete
 						
 						//go back to fetch
-						next_state = FETCH_STATE;
+						next_state = `FETCH_STATE;
 					end
 		endcase
 	end 
