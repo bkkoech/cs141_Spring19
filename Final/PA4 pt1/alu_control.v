@@ -2,6 +2,7 @@
 `default_nettype none //helps catch typo-related bugs
 
 `include "mips_funct_defines.v"
+`include "mips_op_codes_defines.v"
 
 //////////////////////////////////////////////////////////////////////////////////
 // 
@@ -18,7 +19,14 @@ module alu_control(clk, rst, ALUOp, ALUControl, funct);
 	input wire [5:0] funct;
 	output wire [3:0] ALUControl;
 	
-	//NEED TO DO
+	always @*
+	begin
+		if (ALUOp == 2'b00)
+
+		else if (ALUOp == 2'b01)
+
+		else
+	end
 
 
 endmodule

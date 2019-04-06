@@ -23,8 +23,10 @@ module mips_core(clk, rst, MemWrite, read_data, write_data, write_addr);
 	// Control Signal Definitions
 	wire MemRead, MemWrite, IRWrite, MemtoReg, RegDst, RegWrite, ALUSrcA, ALUSrcB, PCSource, PCWriteCond, PCWrite, IorD;
 	wire [1:0] ALUOp;
-	// register file wires
-	wire [N-1:0] rd_addr0, rd_addr1, wr_addr, rd_data0, rd_data1, wr_data;
+	// register file output wires
+	wire [N-1:0] rd_data1, rd_data2, wr_data;
+	// register input addr wires 
+	wire [4:0] rd_addr1, rd_addr2, wr_addr;
 	// ALU wires
 	wire [N-1:0] ALUoutput;
 	
@@ -40,8 +42,8 @@ module mips_core(clk, rst, MemWrite, read_data, write_data, write_addr);
 	instr_decoder DECODER(
 		.instr, 
 		.op, 
-		.rs, 
-		.rt, 
+		.rs(rd_addr1), 
+		.rt(rd_addr2), 
 		.rd, 
 		.shamt, 
 		.funct, 
@@ -102,7 +104,6 @@ module mips_core(clk, rst, MemWrite, read_data, write_data, write_addr);
 		.PCWrite(PCWrite),
 		.IorD(IorD)
 		.OP_code()
-		.Funct()
 		);
 		
 	//

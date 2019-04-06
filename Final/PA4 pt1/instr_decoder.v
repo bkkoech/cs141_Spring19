@@ -1,7 +1,6 @@
 `timescale 1ns / 1ps
 `default_nettype none //helps catch typo-related bugs
 
-`include "mips_op_codes_defines.v"
 
 //////////////////////////////////////////////////////////////////////////////////
 // 
@@ -21,7 +20,14 @@ module instr_decoder(instr, op, rs, rt, rd, shamt, funct, imm, addr);
 	output wire [15:0] imm;
 	output wire [25:0] addr;
 	
-	//TODO
+	assign op = instr[31:26];
+	assign rs = instr[25:21];
+	assign rt = instr[20:16];
+	assign rd = instr[15:11];
+	assign shamt = instr[10:6];
+	assign funct = instr[5:0];
+	assign imm = instr[15:0];
+	assign addr = instr[25:0];
 
 endmodule
 `default_nettype wire //some Xilinx IP requires that the default_nettype be set to wire
