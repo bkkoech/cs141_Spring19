@@ -118,8 +118,8 @@ module control_module(clk, rst, MemWrite, IRWrite, MemtoReg, RegDst, RegWrite,
 						// set outputs
 
 						// handling shamt for shifts
-						if (Funct == (`FUNCT_SLL || `FUNCT_SRL || `FUNCT_SRA ) begin
-							ALUSrcB == 3'b100;
+						if (Funct == (`FUNCT_SLL || `FUNCT_SRL || `FUNCT_SRA )) begin
+							ALUSrcB = 3'b100;
 						end
 						else begin
 							ALUSrcB = 3'b000;

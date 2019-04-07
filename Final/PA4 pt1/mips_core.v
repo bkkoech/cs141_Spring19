@@ -119,8 +119,8 @@ module mips_core(clk, rst, MemWrite, read_data, write_data, write_addr);
 		.PCSource(PCSource),
 		.PCWriteCond(PCWriteCond),
 		.PCWrite(PCWrite),
-		.IorD(IorD)
-		.OP_code(op_decoded)
+		.IorD(IorD),
+		.OP_code(op_decoded),
 		.Funct(funct_decoded)
 		);
 
