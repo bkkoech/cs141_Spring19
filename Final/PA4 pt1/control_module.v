@@ -45,7 +45,7 @@ module control_module(clk, rst, MemWrite, IRWrite, MemtoReg, RegDst, RegWrite,
 		end
 	end 
 	//triggers on change of state or inputs
-	always @(clk, state, rst, Op_code) begin 
+	always @(state, rst, Op_code) begin 
 		case (state) 
 					`FETCH_STATE : begin
 						// set outputs
@@ -74,7 +74,27 @@ module control_module(clk, rst, MemWrite, IRWrite, MemtoReg, RegDst, RegWrite,
 
 					`DECODE_STATE : begin
 						// wait one_clock cycle for reading and decoding to complete
-						// dont change any outputs from previous state
+						// set outputs
+						// MULTIPLEXER SELECTS:
+						
+						// dont care selects
+						IorD = 0;
+						ALUSrcA = 0;
+						ALUSrcB = 3'b001;
+						ALUOp = 2'b00;
+						PCSource = 2'b00;
+						RegDst = 0;
+						MemtoReg = 0;
+
+						//ENABLE SIGNALS
+						//Asserted enables
+						
+						//Not Asserted
+						IRWrite = 0;
+						PCWrite = 0;
+						MemWrite = 0;
+						RegWrite = 0;
+						PCWriteCond = 0; // Also known as Branch
 						
 						
 						//check value of inputs to determine next state
@@ -84,7 +104,7 @@ module control_module(clk, rst, MemWrite, IRWrite, MemtoReg, RegDst, RegWrite,
 						end
 						//Other types
 						//IMPLEMENT LATER
-						if (Op_code == `J) begin
+						else if (Op_code == `J) begin
 							next_state = `DECODE_STATE;
 						end
 						else begin
