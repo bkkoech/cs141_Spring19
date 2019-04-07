@@ -29,7 +29,7 @@ module test_control_module;
 	// Inputs
 	reg clk;
 	reg rst;
-	reg Op_code;
+	reg [5:0] Op_code;
 
 	// Outputs
 	wire MemWrite;

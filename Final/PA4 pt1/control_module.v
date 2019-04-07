@@ -45,7 +45,7 @@ module control_module(clk, rst, MemWrite, IRWrite, MemtoReg, RegDst, RegWrite,
 		end
 	end 
 	//triggers on change of state or inputs
-	always @(state, rst, Op_code) begin 
+	always @(clk, state, rst, Op_code) begin 
 		case (state) 
 					`FETCH_STATE : begin
 						// set outputs
