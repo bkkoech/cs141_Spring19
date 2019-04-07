@@ -16,7 +16,7 @@ module instr_decoder(instr, op, rs, rt, rd, shamt, funct, imm, addr);
 	input wire [N-1:0] instr;
 	output wire [5:0] op;
 	output wire [4:0] rs, rt, rd, shamt;
-	output wire [5:0] funct;
+	output wire [N-1:0] funct;
 	output wire [15:0] imm;
 	output wire [25:0] addr;
 	
@@ -24,7 +24,7 @@ module instr_decoder(instr, op, rs, rt, rd, shamt, funct, imm, addr);
 	assign rs = instr[25:21];
 	assign rt = instr[20:16];
 	assign rd = instr[15:11];
-	assign shamt = instr[10:6];
+	assign shamt = {27'b0, instr[10:6]};
 	assign funct = instr[5:0];
 	assign imm = instr[15:0];
 	assign addr = instr[25:0];

@@ -1,6 +1,7 @@
 `timescale 1ns / 1ps
 `default_nettype none //helps catch typo-related bugs
 `include "mips_op_codes_defines.v"
+`include "mips_funct_defines.v"
 //////////////////////////////////////////////////////////////////////////////////
 // 
 // CS 141 - Fall 2015
@@ -20,11 +21,11 @@
 //useful constants
 
 module control_module(clk, rst, MemWrite, IRWrite, MemtoReg, RegDst, RegWrite, 
-								ALUSrcA, ALUSrcB, ALUOp, PCSource, PCWriteCond, PCWrite, IorD, Op_code);
+								ALUSrcA, ALUSrcB, ALUOp, PCSource, PCWriteCond, PCWrite, IorD, Op_code, Funct);
 	parameter N = 32;
 	//port definitions
 	input wire clk, rst;
-	input wire [5:0] Op_code;
+	input wire [5:0] Op_code, Funct;
 	//use reg in procedural
 	output reg MemWrite, IRWrite, MemtoReg, RegDst, RegWrite, ALUSrcA, PCWriteCond, PCWrite, IorD;
 	output reg [1:0] ALUOp,PCSource;
@@ -115,10 +116,17 @@ module control_module(clk, rst, MemWrite, IRWrite, MemtoReg, RegDst, RegWrite,
 					
 					`EXECUTE_STATE : begin
 						// set outputs
+
+						// handling shamt for shifts
+						if (Funct == (`FUNCT_SLL || `FUNCT_SRL || `FUNCT_SRA ) begin
+							ALUSrcB == 3'b100;
+						end
+						else begin
+							ALUSrcB = 3'b000;
+						end
 						
 						// MULTIPLEXER SELECTS:
 						ALUSrcA = 1;
-						ALUSrcB = 3'b000;
 						ALUOp = 2'b10;
 						//dont cares
 						IorD = 0;

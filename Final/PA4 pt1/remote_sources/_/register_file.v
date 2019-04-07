@@ -1,12 +1,12 @@
 `default_nettype none
 `timescale 1ns/1ps
 
-module register_file(clk, rst, rd_addr0, rd_addr1, wr_addr, rd_data0, rd_data1, wr_data, wr_ena);
+module register_file(clk, rst, rd_addr1, rd_addr2, wr_addr, rd_data1, rd_data2, wr_data, wr_ena);
 
 	parameter N = 32;
 	input wire clk, rst;
-	input wire [4:0] rd_addr0, rd_addr1, wr_addr;
-	output reg [N-1:0] rd_data0, rd_data1;
+	input wire [4:0] rd_addr1, rd_addr2, wr_addr;
+	output reg [N-1:0] rd_data1, rd_data2;
 	input wire [N-1:0] wr_data;
 	input wire wr_ena;
 
@@ -49,42 +49,7 @@ module register_file(clk, rst, rd_addr0, rd_addr1, wr_addr, rd_data0, rd_data1, 
 	register #(.N(N)) R31 (.clk(clk), .d(wr_data), .q(r31), .rst(rst), .ena(reg_enas[31]));
 
 	always @(*) begin
-		case (rd_addr0) 
-			5'd00 : rd_data0 = r00;
-			5'd01 : rd_data0 = r01;
-			5'd02 : rd_data0 = r02;
-			5'd03 : rd_data0 = r03;
-			5'd04 : rd_data0 = r04;
-			5'd05 : rd_data0 = r05;
-			5'd06 : rd_data0 = r06;
-			5'd07 : rd_data0 = r07;
-			5'd08 : rd_data0 = r08;
-			5'd09 : rd_data0 = r09;
-			5'd10 : rd_data0 = r10;
-			5'd11 : rd_data0 = r11;
-			5'd12 : rd_data0 = r12;
-			5'd13 : rd_data0 = r13;
-			5'd14 : rd_data0 = r14;
-			5'd15 : rd_data0 = r15;
-			5'd16 : rd_data0 = r16;
-			5'd17 : rd_data0 = r17;
-			5'd18 : rd_data0 = r18;
-			5'd19 : rd_data0 = r19;
-			5'd20 : rd_data0 = r20;
-			5'd21 : rd_data0 = r21;
-			5'd22 : rd_data0 = r22;
-			5'd23 : rd_data0 = r23;
-			5'd24 : rd_data0 = r24;
-			5'd25 : rd_data0 = r25;
-			5'd26 : rd_data0 = r26;
-			5'd27 : rd_data0 = r27;
-			5'd28 : rd_data0 = r28;
-			5'd29 : rd_data0 = r29;
-			5'd30 : rd_data0 = r30;
-			5'd31 : rd_data0 = r31;
-			default: rd_data0 = 0;
-		endcase
-		case (rd_addr1)
+		case (rd_addr1) 
 			5'd00 : rd_data1 = r00;
 			5'd01 : rd_data1 = r01;
 			5'd02 : rd_data1 = r02;
@@ -118,6 +83,41 @@ module register_file(clk, rst, rd_addr0, rd_addr1, wr_addr, rd_data0, rd_data1, 
 			5'd30 : rd_data1 = r30;
 			5'd31 : rd_data1 = r31;
 			default: rd_data1 = 0;
+		endcase
+		case (rd_addr2)
+			5'd00 : rd_data2 = r00;
+			5'd01 : rd_data2 = r01;
+			5'd02 : rd_data2 = r02;
+			5'd03 : rd_data2 = r03;
+			5'd04 : rd_data2 = r04;
+			5'd05 : rd_data2 = r05;
+			5'd06 : rd_data2 = r06;
+			5'd07 : rd_data2 = r07;
+			5'd08 : rd_data2 = r08;
+			5'd09 : rd_data2 = r09;
+			5'd10 : rd_data2 = r10;
+			5'd11 : rd_data2 = r11;
+			5'd12 : rd_data2 = r12;
+			5'd13 : rd_data2 = r13;
+			5'd14 : rd_data2 = r14;
+			5'd15 : rd_data2 = r15;
+			5'd16 : rd_data2 = r16;
+			5'd17 : rd_data2 = r17;
+			5'd18 : rd_data2 = r18;
+			5'd19 : rd_data2 = r19;
+			5'd20 : rd_data2 = r20;
+			5'd21 : rd_data2 = r21;
+			5'd22 : rd_data2 = r22;
+			5'd23 : rd_data2 = r23;
+			5'd24 : rd_data2 = r24;
+			5'd25 : rd_data2 = r25;
+			5'd26 : rd_data2 = r26;
+			5'd27 : rd_data2 = r27;
+			5'd28 : rd_data2 = r28;
+			5'd29 : rd_data2 = r29;
+			5'd30 : rd_data2 = r30;
+			5'd31 : rd_data2 = r31;
+			default: rd_data2 = 0;
 		endcase
 	end
 
