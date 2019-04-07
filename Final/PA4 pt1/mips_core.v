@@ -20,7 +20,7 @@ module mips_core(clk, rst, MemWrite, read_data, write_data, write_addr);
 	output wire [N-1:0] write_data, write_addr, MemWrite;
 	
 	// Control Signal Definitions
-	wire MemWrite, IRWrite, MemtoReg, RegDst, RegWrite, ALUSrcA, PCWriteCond, PCWrite, IorD;
+	wire IRWrite, MemtoReg, RegDst, RegWrite, ALUSrcA, PCWriteCond, PCWrite, IorD;
 	wire [1:0] ALUOp, PCSource;
 	wire [2:0] ALUSrcB;
 
@@ -124,7 +124,7 @@ module mips_core(clk, rst, MemWrite, read_data, write_data, write_addr);
 		.Funct(funct_decoded)
 		);
 
-	5to1_mux 5to1_ALUb_MUX(
+	five_to1_mux fiveto1_ALUb_MUX(
 		.in0(b_to_alusrcB_mux),
 		.in1(32'd4),
 		.in2(imm_extended),
@@ -134,13 +134,14 @@ module mips_core(clk, rst, MemWrite, read_data, write_data, write_addr);
 		.out(ALU_SrcB_in)
 		);
 
-	3to1_mux 3to1_PCSource_MUX(
+	three_to1_mux threeto1_PCSource_MUX(
 		.in0(ALUOutput),
 		.in1(aluout_out),
 		.in2(jump_addr),
 		.select(PCSource),
 		.out(pc_feedback)
 		);
+		
 	// conenct back to memory
 	assign write_data = b_to_alusrcB_mux;
 

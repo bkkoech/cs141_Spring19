@@ -24,10 +24,10 @@ module alu_control(ALUOp, ALUControl, funct);
 	
 	always @(*) begin
 		if (ALUOp == 2'b00) begin // add
-			assign ALUControl = `ALU_OP_ADD;
+			alu_output = `ALU_OP_ADD;
 		end
 		else if (ALUOp == 2'b01) begin
-			assign ALUControl = `ALU_OP_SUB;
+			alu_output = `ALU_OP_SUB;
 		end
 		else if (ALUOp == 2'b10) begin
 			// Do R-Type
