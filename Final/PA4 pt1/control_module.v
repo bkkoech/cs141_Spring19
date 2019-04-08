@@ -180,6 +180,7 @@ module control_module(clk, rst, MemWrite, IRWrite, MemtoReg, RegDst, RegWrite,
 						//go back to fetch
 						next_state = `FETCH_STATE;
 					end
+					default : next_state = `FETCH_STATE;
 		endcase
 	end 
 

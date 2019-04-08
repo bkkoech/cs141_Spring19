@@ -3,6 +3,7 @@
 
 module test_mips_multicycle;
 
+parameter N = 32;
 //module cli args
 integer NUM_CYCLES = 100;
 integer DATA_MEM_START;
@@ -54,7 +55,7 @@ initial begin
 	
 	if(!$value$plusargs("NUM_CYCLES=%d", NUM_CYCLES)) begin
 		$display("defaulting to 1000 cycles");
-		NUM_CYCLES = 1000;
+		NUM_CYCLES = 100;
 	end
 	
 	repeat (2) @(posedge clk); rst = 0;

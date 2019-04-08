@@ -14,9 +14,9 @@
 module instr_decoder(instr, op, rs, rt, rd, shamt, funct, imm, addr);
 	parameter N = 32;
 	input wire [N-1:0] instr;
-	output wire [5:0] op;
-	output wire [4:0] rs, rt, rd, shamt;
-	output wire [N-1:0] funct;
+	output wire [5:0] op, funct;
+	output wire [4:0] rs, rt, rd;
+	output wire [N-1:0] shamt;
 	output wire [15:0] imm;
 	output wire [25:0] addr;
 	

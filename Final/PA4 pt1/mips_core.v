@@ -1,8 +1,6 @@
 `timescale 1ns / 1ps
 `default_nettype none //helps catch typo-related bugs
 
-`include "mips_memory_space_defines.v"
-
 //////////////////////////////////////////////////////////////////////////////////
 // 
 // CS 141 - Fall 2015
@@ -17,7 +15,8 @@ module mips_core(clk, rst, MemWrite, read_data, write_data, write_addr);
 	
 	input wire clk, rst;
 	input wire [N-1:0] read_data;
-	output wire [N-1:0] write_data, write_addr, MemWrite;
+	output wire [N-1:0] write_data, write_addr;
+	output wire MemWrite;
 	
 	// Control Signal Definitions
 	wire IRWrite, MemtoReg, RegDst, RegWrite, ALUSrcA, PCWriteCond, PCWrite, IorD;
@@ -40,7 +39,7 @@ module mips_core(clk, rst, MemWrite, read_data, write_data, write_addr);
 	wire PCWriteEn, AND_out;
 	wire [N-1:0] pc_out, aluout_out, decoder_in, mdr_out, a_to_alusrcA_mux;
 	wire [N-1:0] b_to_alusrcB_mux, imm_extended, imm_extendedshift, jump_addr;
-	reg [N-1:0] pc_feedback = `I_START_ADDRESS;
+	reg [N-1:0] pc_feedback = 32'h00400000;
 
 	// decoder out signals
 	wire [5:0] op_decoded, funct_decoded;
@@ -120,7 +119,7 @@ module mips_core(clk, rst, MemWrite, read_data, write_data, write_addr);
 		.PCWriteCond(PCWriteCond),
 		.PCWrite(PCWrite),
 		.IorD(IorD),
-		.OP_code(op_decoded),
+		.Op_code(op_decoded),
 		.Funct(funct_decoded)
 		);
 
