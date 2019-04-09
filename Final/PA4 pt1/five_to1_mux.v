@@ -22,7 +22,7 @@ module five_to1_mux(in0, in1, in2, in3, in4, select, out);
 	input wire [2:0] select;
 	output wire [N-1:0] out;
 
-	reg [3:0] mux_output = 32'b0;
+	reg [N-1:0] mux_output = 32'b0;
 	
 	always @(*) begin
 		case(select)
@@ -31,7 +31,7 @@ module five_to1_mux(in0, in1, in2, in3, in4, select, out);
 			3'd2 : mux_output = in2;
 			3'd3 : mux_output = in3;
 			3'd4 : mux_output = in4;
-			default    : mux_output = 4'b0000;
+			default    : mux_output = 0;
 		endcase
 	end
 

@@ -20,7 +20,7 @@ module alu(x, y, op_code, z, equal, zero, overflow);
 			`ALU_OP_OR  : z = x | y;
 			`ALU_OP_XOR : z = x ^ y;
 			`ALU_OP_NOR : z = ~(x | y);
-			`ALU_OP_SLT : z = {31'b0, x_s < y_s}; 
+			`ALU_OP_SLT : z = {31'b0, x_s < y_s}; //
 			`ALU_OP_SLL : z = x << y;
 			`ALU_OP_SRL : z = x >> y;
 			`ALU_OP_ADD : z = x + y;

@@ -22,14 +22,14 @@ module three_to1_mux(in0, in1, in2, select, out);
 	input wire [1:0] select;
 	output wire [N-1:0] out;
 
-	reg [3:0] mux_output = 32'b0;
+	reg [N-1:0] mux_output;
 	
 	always @(*) begin
 		case(select)
-			3'd0 : mux_output = in0;
-			3'd1 : mux_output = in1;
-			3'd2 : mux_output = in2;
-			default    : mux_output = 4'b0000;
+			2'd0 : mux_output = in0;
+			2'd1 : mux_output = in1;
+			2'd2 : mux_output = in2;
+			default : mux_output = 0;
 		endcase
 	end
 

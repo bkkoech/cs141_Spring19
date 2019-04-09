@@ -35,14 +35,15 @@ module alu_control(ALUOp, ALUControl, funct);
 				`FUNCT_ADD : alu_output = `ALU_OP_ADD;
 				`FUNCT_SUB : alu_output = `ALU_OP_SUB;
 				`FUNCT_SLL : alu_output = `ALU_OP_SLL;
-				`FUNCT_SRA : alu_output = `ALU_OP_SRL;
-				`FUNCT_JR  : alu_output = `ALU_OP_ADD;
+				`FUNCT_SRL : alu_output = `ALU_OP_SRL;
+				`FUNCT_SRA : alu_output = `ALU_OP_SRA;
+				//`FUNCT_JR  : alu_output = `ALU_OP_ADD;
 				`FUNCT_AND : alu_output = `ALU_OP_AND;
 				`FUNCT_OR  : alu_output = `ALU_OP_OR;
 				`FUNCT_XOR : alu_output = `ALU_OP_XOR;
 				`FUNCT_NOR : alu_output = `ALU_OP_NOR;
 				`FUNCT_SLT : alu_output = `ALU_OP_SLT;
-				default    : alu_output = 4'b0000;
+				default    : alu_output = 0;
 			endcase
 		end
 	end

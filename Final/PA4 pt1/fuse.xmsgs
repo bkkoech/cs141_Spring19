@@ -5,5 +5,11 @@
      behavior or data corruption.  It is strongly advised that
      users do not edit the contents of this file. -->
 <messages>
+<msg type="warning" file="HDLCompiler" num="1016" delta="unknown" >"Z:/CS141 - Computer Architecture/cs141_Spring19/Final/PA4 pt1/test_mips_multicycle.v" Line 29: Port <arg fmt="%s" index="1">error</arg> is not connected to this instance
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1016" delta="unknown" >"Z:/CS141 - Computer Architecture/cs141_Spring19/Final/PA4 pt1/MIPS_Core.v" Line 88: Port <arg fmt="%s" index="1">equal</arg> is not connected to this instance
+</msg>
+
 </messages>
 

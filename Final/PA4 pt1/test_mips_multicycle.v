@@ -42,7 +42,7 @@ synth_dual_port_memory #(
 //instantiate your mips core module here
 mips_core MIPSCore(
 	.clk(clk),
-	.rst(rstb),
+	.rst(rst),
 	.read_data(mem_rd_data),
 	.write_data(mem_wr_data),
 	.write_addr(mem_addr),
@@ -55,7 +55,7 @@ initial begin
 	
 	if(!$value$plusargs("NUM_CYCLES=%d", NUM_CYCLES)) begin
 		$display("defaulting to 1000 cycles");
-		NUM_CYCLES = 100;
+		NUM_CYCLES = 300;
 	end
 	
 	repeat (2) @(posedge clk); rst = 0;

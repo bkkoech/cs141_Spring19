@@ -27,8 +27,8 @@ module control_module(clk, rst, MemWrite, IRWrite, MemtoReg, RegDst, RegWrite,
 	input wire clk, rst;
 	input wire [5:0] Op_code, Funct;
 	//use reg in procedural
-	output reg MemWrite, IRWrite, MemtoReg, RegDst, RegWrite, ALUSrcA, PCWriteCond, PCWrite, IorD;
-	output reg [1:0] ALUOp,PCSource;
+	output reg MemWrite, IRWrite, MemtoReg, RegDst, RegWrite, PCWriteCond, PCWrite, IorD;
+	output reg [1:0] ALUOp, PCSource, ALUSrcA;
 	output reg [2:0] ALUSrcB;
 
 	//FSM
@@ -52,7 +52,7 @@ module control_module(clk, rst, MemWrite, IRWrite, MemtoReg, RegDst, RegWrite,
 						// set outputs
 						// MULTIPLEXER SELECTS:
 						IorD = 0;
-						ALUSrcA = 0;
+						ALUSrcA = 2'b00;
 						ALUSrcB = 3'b001;
 						ALUOp = 2'b00;
 						PCSource = 2'b00;
@@ -77,11 +77,11 @@ module control_module(clk, rst, MemWrite, IRWrite, MemtoReg, RegDst, RegWrite,
 						// wait one_clock cycle for reading and decoding to complete
 						// set outputs
 						// MULTIPLEXER SELECTS:
-						
+						ALUSrcB = 3'b011;
+
 						// dont care selects
 						IorD = 0;
-						ALUSrcA = 0;
-						ALUSrcB = 3'b001;
+						ALUSrcA = 2'b00;
 						ALUOp = 2'b00;
 						PCSource = 2'b00;
 						RegDst = 0;
@@ -118,15 +118,16 @@ module control_module(clk, rst, MemWrite, IRWrite, MemtoReg, RegDst, RegWrite,
 						// set outputs
 
 						// handling shamt for shifts
-						if (Funct == (`FUNCT_SLL || `FUNCT_SRL || `FUNCT_SRA )) begin
+						if (Funct == `FUNCT_SLL || Funct == `FUNCT_SRL || Funct == `FUNCT_SRA ) begin
 							ALUSrcB = 3'b100;
+							ALUSrcA = 2'b10;
 						end
 						else begin
 							ALUSrcB = 3'b000;
+							ALUSrcA = 2'b01;
 						end
 						
 						// MULTIPLEXER SELECTS:
-						ALUSrcA = 1;
 						ALUOp = 2'b10;
 						//dont cares
 						IorD = 0;
@@ -154,7 +155,7 @@ module control_module(clk, rst, MemWrite, IRWrite, MemtoReg, RegDst, RegWrite,
 						RegDst = 1;
 						MemtoReg = 0;
 						//dont cares
-						ALUSrcA = 1;
+						ALUSrcA = 2'b01;
 						ALUSrcB = 3'b000;
 						ALUOp = 2'b10;
 						IorD = 0;
@@ -176,6 +177,8 @@ module control_module(clk, rst, MemWrite, IRWrite, MemtoReg, RegDst, RegWrite,
 					`WRITEBACK_WAIT_STATE : begin
 						
 						//Wait for writeback to complete
+
+						RegWrite = 0;
 						
 						//go back to fetch
 						next_state = `FETCH_STATE;

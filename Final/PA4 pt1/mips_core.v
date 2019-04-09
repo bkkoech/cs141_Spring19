@@ -19,8 +19,8 @@ module mips_core(clk, rst, MemWrite, read_data, write_data, write_addr);
 	output wire MemWrite;
 	
 	// Control Signal Definitions
-	wire IRWrite, MemtoReg, RegDst, RegWrite, ALUSrcA, PCWriteCond, PCWrite, IorD;
-	wire [1:0] ALUOp, PCSource;
+	wire IRWrite, MemtoReg, RegDst, RegWrite, PCWriteCond, PCWrite, IorD;
+	wire [1:0] ALUOp, PCSource, ALUSrcA;
 	wire [2:0] ALUSrcB;
 
 	// register file output wires
@@ -39,7 +39,7 @@ module mips_core(clk, rst, MemWrite, read_data, write_data, write_addr);
 	wire PCWriteEn, AND_out;
 	wire [N-1:0] pc_out, aluout_out, decoder_in, mdr_out, a_to_alusrcA_mux;
 	wire [N-1:0] b_to_alusrcB_mux, imm_extended, imm_extendedshift, jump_addr;
-	reg [N-1:0] pc_feedback = 32'h00400000;
+	wire [N-1:0] pc_feedback;
 
 	// decoder out signals
 	wire [5:0] op_decoded, funct_decoded;
@@ -55,7 +55,7 @@ module mips_core(clk, rst, MemWrite, read_data, write_data, write_addr);
 	register A (.clk(clk), .rst(rst), .ena(1'b1), .d(rd_data1), .q(a_to_alusrcA_mux));
 	register B (.clk(clk), .rst(rst), .ena(1'b1), .d(rd_data2), .q(b_to_alusrcB_mux));
 	register ALUOut (.clk(clk), .rst(rst), .ena(1'b1), .d(ALUOutput), .q(aluout_out));
-	register PC (.clk(clk), .rst(rst), .ena(PCWriteEn), .d(pc_feedback), .q(pc_out));
+	pc_register PC (.clk(clk), .rst(rst), .ena(PCWriteEn), .d(pc_feedback), .q(pc_out));
 	
 	// Instruction Decoder
 	instr_decoder DECODER(
@@ -158,7 +158,13 @@ module mips_core(clk, rst, MemWrite, read_data, write_data, write_addr);
 	assign wr_data = MemtoReg ? mdr_out : aluout_out;
 
 	// ALU SRCA MUX
-	assign ALU_SrcA_in = ALUSrcA ? a_to_alusrcA_mux : pc_out;
+	three_to1_mux threeto1_ALUSrcA_MUX(
+		.in0(pc_out),
+		.in1(a_to_alusrcA_mux),
+		.in2(b_to_alusrcB_mux),
+		.select(ALUSrcA),
+		.out(ALU_SrcA_in)
+		);
 
 	// IMM extension and shift
 	assign imm_extended = {{16{imm_decoded[15]}}, imm_decoded};
