@@ -100,7 +100,8 @@ module mips_core(clk, rst, MemWrite, read_data, write_data, write_addr);
 	alu_control ALU_CONTROL(
 		.ALUOp(ALUOp),
 		.ALUControl(ALU_control_sig),
-		.funct(funct_decoded)
+		.funct(funct_decoded),
+		.op_code(op_decoded)
 		);
 		
 	// Control Module Instantiation

@@ -15,9 +15,9 @@
 //
 //
 //////////////////////////////////////////////////////////////////////////////////
-module alu_control(ALUOp, ALUControl, funct);
+module alu_control(ALUOp, ALUControl, funct, op_code);
 	input wire [1:0] ALUOp;
-	input wire [5:0] funct;
+	input wire [5:0] funct, op_code;
 	output wire [3:0] ALUControl;
 
 	reg [3:0] alu_output = 4'b0000;
@@ -45,6 +45,18 @@ module alu_control(ALUOp, ALUControl, funct);
 				`FUNCT_SLT : alu_output = `ALU_OP_SLT;
 				default    : alu_output = 0;
 			endcase
+		else if (ALUOp == 2'b11) begin
+			case(op_code)
+				`ADDI 	: alu_output = `ALU_OP_ADD;
+				`SLTI	: alu_output = `ALU_OP_SLT;
+				`ANDI	: alu_output = `ALU_OP_AND;
+				`ORI	: alu_output = `ALU_OP_OR;
+				`XORI	: alu_output = `ALU_OP_XOR;
+				default : alu_output = 0;
+			endcase
+		else begin
+			alu_output = 0;
+		end
 		end
 	end
 

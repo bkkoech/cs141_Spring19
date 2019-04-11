@@ -12,11 +12,15 @@
 //
 //////////////////////////////////////////////////////////////////////////////////
 //define states, R type requires 5 states = 8 (3 bits)
-`define FETCH_STATE 3'b000
-`define DECODE_STATE 3'b001
-`define EXECUTE_STATE 3'b010
-`define ALU_WRITEBACK_STATE 3'b011
-`define WRITEBACK_WAIT_STATE 3'b100
+`define FETCH_STATE 4'b000
+`define DECODE_STATE 4'd1
+
+`define EXECUTE_R_STATE 4'd2
+`define WRITEBACK_R_STATE 4'd7
+`define WRITEBACK_WAIT_STATE 4'd15
+
+`define EXECUTE_I_STATE 4'd6
+`define WRITEBACK_I_STATE 4'd10
 
 //useful constants
 
@@ -101,20 +105,23 @@ module control_module(clk, rst, MemWrite, IRWrite, MemtoReg, RegDst, RegWrite,
 						//check value of inputs to determine next state
 						// if R-type
 						if (Op_code == `RTYPE) begin
-							next_state = `EXECUTE_STATE;
+							next_state = `EXECUTE_R_STATE;
 						end
-						//Other types
-						//IMPLEMENT LATER
+						//J types
 						else if (Op_code == `J) begin
 							next_state = `DECODE_STATE;
 						end
-						else begin
+						// I types
+						else if ((Op_code == `ADDI) || (Op_code == `SLTI) || (Op_code == `ANDI) || (Op_code == `ORI) || (Op_code == `XORI)) begin
+							next_state == `EXECUTE_I_STATE;
+						end
 						//stay in the same state
-						next_state = `DECODE_STATE;
+						else begin
+							next_state = `DECODE_STATE;
 						end
 					end
 					
-					`EXECUTE_STATE : begin
+					`EXECUTE_R_STATE : begin
 						// set outputs
 
 						// handling shamt for shifts
@@ -146,9 +153,66 @@ module control_module(clk, rst, MemWrite, IRWrite, MemtoReg, RegDst, RegWrite,
 						PCWriteCond = 0; // Also known as Branch
 						
 						//next state
-						next_state = `ALU_WRITEBACK_STATE;
+						next_state = `WRITEBACK_R_STATE;
 					end
-					`ALU_WRITEBACK_STATE : begin
+
+					`EXECUTE_I_STATE : begin
+						// set outputs
+						
+						// MULTIPLEXER SELECTS:
+						ALUOp = 2'b11;
+						ALUSrcA = 2'b01;
+						ALUSrcB = 3'b010;
+
+						//dont cares
+						IorD = 0;
+						PCSource = 2'b00;
+						RegDst = 0;
+						MemtoReg = 0;
+
+						//ENABLE SIGNALS
+						//Asserted enables
+				
+						//Not Asserted
+						IRWrite = 0;
+						PCWrite = 0;
+						MemWrite = 0;
+						RegWrite = 0;
+						PCWriteCond = 0; // Also known as Branch
+						
+						//next state
+						next_state = `WRITEBACK_I_STATE;
+					end
+
+					`WRITEBACK_I_STATE : begin
+						// set outputs
+						
+						// MULTIPLEXER SELECTS:
+						RegDst = 0;
+						MemtoReg = 0;
+						
+						//dont cares
+						ALUSrcA = 2'b01;
+						ALUSrcB = 3'b000;
+						ALUOp = 2'b10;
+						IorD = 0;
+						PCSource = 2'b00;
+						
+
+						//ENABLE SIGNALS
+						//Asserted enables
+						RegWrite = 1;
+						//Not Asserted
+						IRWrite = 0;
+						PCWrite = 0;
+						MemWrite = 0;
+						PCWriteCond = 0; // Also known as Branch
+						
+						//next state
+						next_state = `WRITEBACK_WAIT_STATE;
+					end
+
+					`WRITEBACK_R_STATE : begin
 						// set outputs
 						
 						// MULTIPLEXER SELECTS:
@@ -174,6 +238,7 @@ module control_module(clk, rst, MemWrite, IRWrite, MemtoReg, RegDst, RegWrite,
 						//next state
 						next_state = `WRITEBACK_WAIT_STATE;
 					end
+
 					`WRITEBACK_WAIT_STATE : begin
 						
 						//Wait for writeback to complete
