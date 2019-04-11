@@ -64,7 +64,7 @@ initial begin
 	$display("simulated %d cycles", NUM_CYCLES);
 	
 	DATA_MEM_START = 0;
-	DATA_MEM_STOP = 0;  //change this to a larger number if you wish to dump the data memory at the end of the program
+	DATA_MEM_STOP = 100;  //change this to a larger number if you wish to dump the data memory at the end of the program
 	if (DATA_MEM_STOP > DATA_MEM_START) begin
 		$display("Dumping data memory from address %d -> %d:", DATA_MEM_START, DATA_MEM_STOP);
 		
