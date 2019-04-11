@@ -113,7 +113,7 @@ module control_module(clk, rst, MemWrite, IRWrite, MemtoReg, RegDst, RegWrite,
 						end
 						// I types
 						else if ((Op_code == `ADDI) || (Op_code == `SLTI) || (Op_code == `ANDI) || (Op_code == `ORI) || (Op_code == `XORI)) begin
-							next_state == `EXECUTE_I_STATE;
+							next_state = `EXECUTE_I_STATE;
 						end
 						//stay in the same state
 						else begin

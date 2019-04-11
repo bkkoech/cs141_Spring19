@@ -1,5 +1,5 @@
-	nor	$t0, $t0, $t0
-	srl $t1, $t0, 6
-	slt $t2, $t0, $t1
-	add $t3, $t0, $0
-	sub $t4, $t0, $t3
+nor     $t0, $t0, $t0   # all 1s
+addi    $t1, $t0, -15   # 4 LSBs=0
+ori     $t2, $t1, 7     # one zero at 4th pos
+xori    $t3, $t2, 8     # all 1s
+slti     $t4, $0, 1      # lsb = 1

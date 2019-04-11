@@ -45,6 +45,7 @@ module alu_control(ALUOp, ALUControl, funct, op_code);
 				`FUNCT_SLT : alu_output = `ALU_OP_SLT;
 				default    : alu_output = 0;
 			endcase
+		end
 		else if (ALUOp == 2'b11) begin
 			case(op_code)
 				`ADDI 	: alu_output = `ALU_OP_ADD;
@@ -54,9 +55,9 @@ module alu_control(ALUOp, ALUControl, funct, op_code);
 				`XORI	: alu_output = `ALU_OP_XOR;
 				default : alu_output = 0;
 			endcase
+		end
 		else begin
 			alu_output = 0;
-		end
 		end
 	end
 
