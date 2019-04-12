@@ -17,6 +17,7 @@
 
 `define EXECUTE_R_STATE 4'd6
 `define WRITEBACK_R_STATE 4'd7
+
 `define WRITEBACK_WAIT_STATE 4'd15
 
 `define EXECUTE_I_STATE 4'd9
@@ -26,6 +27,8 @@
 `define MEM_READ_STATE 4'd3
 `define MEM_WRITE_STATE 4'd5
 `define MEM_WRITEBACK_STATE 4'd4
+
+`define MEM_READ_WAIT_STATE 4'd14
 
 //useful constants 
 
@@ -255,6 +258,10 @@ module control_module(clk, rst, MemWrite, IRWrite, MemtoReg, RegDst, RegWrite,
 						PCWriteCond = 0; // Also known as Branch
 						
 						//next state
+						next_state = `MEM_READ_WAIT_STATE;
+					end
+
+					`MEM_READ_WAIT_STATE : begin
 						next_state = `MEM_WRITEBACK_STATE;
 					end
 
@@ -367,11 +374,13 @@ module control_module(clk, rst, MemWrite, IRWrite, MemtoReg, RegDst, RegWrite,
 						next_state = `WRITEBACK_WAIT_STATE;
 					end
 
+
 					`WRITEBACK_WAIT_STATE : begin
 						
 						//Wait for writeback to complete
-
 						RegWrite = 0;
+						MemWrite = 0;
+						IorD = 0;
 						
 						//go back to fetch
 						next_state = `FETCH_STATE;
