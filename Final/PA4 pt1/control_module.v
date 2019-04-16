@@ -11,7 +11,7 @@
 //
 //
 //////////////////////////////////////////////////////////////////////////////////
-//define states, R type requires 5 states = 8 (3 bits)
+//define states
 `define FETCH_STATE 4'd0
 `define DECODE_STATE 4'd1
 
@@ -29,6 +29,9 @@
 `define MEM_WRITEBACK_STATE 4'd4
 
 `define MEM_READ_WAIT_STATE 4'd14
+
+`define EXECUTE_J_STATE 4'd11
+`define WRITEBACK_JR_STATE 4'd12
 
 //useful constants 
 
@@ -117,7 +120,7 @@ module control_module(clk, rst, MemWrite, IRWrite, MemtoReg, RegDst, RegWrite,
 						end
 						//J types
 						else if (Op_code == `J) begin
-							next_state = `DECODE_STATE;
+							next_state = `EXECUTE_J_STATE;
 						end
 						// I types
 						else if ((Op_code == `ADDI) || (Op_code == `SLTI) || (Op_code == `ANDI) || (Op_code == `ORI) || (Op_code == `XORI)) begin
@@ -139,6 +142,12 @@ module control_module(clk, rst, MemWrite, IRWrite, MemtoReg, RegDst, RegWrite,
 						if (Funct == `FUNCT_SLL || Funct == `FUNCT_SRL || Funct == `FUNCT_SRA ) begin
 							ALUSrcB = 3'b100;
 							ALUSrcA = 2'b10;
+						end
+
+						// handle jump register
+						else if (Funct == `FUNCT_JR) begin
+							ALUSrcA = 2'b01;
+							ALUSrcB = 3'b000;
 						end
 						else begin
 							ALUSrcB = 3'b000;
@@ -164,7 +173,12 @@ module control_module(clk, rst, MemWrite, IRWrite, MemtoReg, RegDst, RegWrite,
 						PCWriteCond = 0; // Also known as Branch
 						
 						//next state
-						next_state = `WRITEBACK_R_STATE;
+						if (Funct == `FUNCT_JR) begin
+							next_state = `WRITEBACK_JR_STATE;
+						end
+						else begin
+							next_state = `WRITEBACK_R_STATE;
+						end
 					end
 
 					`EXECUTE_I_STATE : begin
@@ -193,6 +207,35 @@ module control_module(clk, rst, MemWrite, IRWrite, MemtoReg, RegDst, RegWrite,
 						
 						//next state
 						next_state = `WRITEBACK_I_STATE;
+					end
+
+					`EXECUTE_J_STATE : begin
+						// set outputs
+						
+						// MULTIPLEXER SELECTS:
+						PCSource = 2'b10;
+						
+
+						//dont cares
+						IorD = 0;
+						RegDst = 0;
+						MemtoReg = 0;
+						ALUOp = 2'b11;
+						ALUSrcA = 2'b01;
+						ALUSrcB = 3'b010;
+
+						//ENABLE SIGNALS
+						//Asserted enables
+						PCWrite = 1;
+
+						//Not Asserted
+						IRWrite = 0;
+						MemWrite = 0;
+						RegWrite = 0;
+						PCWriteCond = 0; // Also known as Branch
+						
+						//next state
+						next_state = `WRITEBACK_WAIT_STATE;
 					end
 
 					`EXECUTE_MEM_STATE : begin
@@ -374,6 +417,33 @@ module control_module(clk, rst, MemWrite, IRWrite, MemtoReg, RegDst, RegWrite,
 						next_state = `WRITEBACK_WAIT_STATE;
 					end
 
+					`WRITEBACK_JR_STATE : begin
+						// set outputs
+						
+						// MULTIPLEXER SELECTS:
+
+						//dont cares
+						PCSource = 2'b00;
+						ALUSrcA = 2'b01;
+						ALUSrcB = 3'b000;
+						ALUOp = 2'b10;
+						IorD = 0;
+						RegDst = 0;
+						MemtoReg = 0;
+
+						//ENABLE SIGNALS
+						//Asserted enables
+						PCWrite = 1;
+
+						//Not Asserted
+						IRWrite = 0;
+						MemWrite = 0;
+						RegWrite = 0;
+						PCWriteCond = 0; // Also known as Branch
+						
+						//next state
+						next_state = `WRITEBACK_WAIT_STATE;
+					end
 
 					`WRITEBACK_WAIT_STATE : begin
 						
@@ -381,6 +451,7 @@ module control_module(clk, rst, MemWrite, IRWrite, MemtoReg, RegDst, RegWrite,
 						RegWrite = 0;
 						MemWrite = 0;
 						IorD = 0;
+						PCWrite = 0;
 						
 						//go back to fetch
 						next_state = `FETCH_STATE;

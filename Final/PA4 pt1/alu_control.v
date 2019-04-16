@@ -37,7 +37,7 @@ module alu_control(ALUOp, ALUControl, funct, op_code);
 				`FUNCT_SLL : alu_output = `ALU_OP_SLL;
 				`FUNCT_SRL : alu_output = `ALU_OP_SRL;
 				`FUNCT_SRA : alu_output = `ALU_OP_SRA;
-				//`FUNCT_JR  : alu_output = `ALU_OP_ADD;
+				`FUNCT_JR  : alu_output = `ALU_OP_ADD;
 				`FUNCT_AND : alu_output = `ALU_OP_AND;
 				`FUNCT_OR  : alu_output = `ALU_OP_OR;
 				`FUNCT_XOR : alu_output = `ALU_OP_XOR;
