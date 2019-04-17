@@ -19,8 +19,8 @@ module mips_core(clk, rst, MemWrite, read_data, write_data, write_addr);
 	output wire MemWrite;
 	
 	// Control Signal Definitions
-	wire IRWrite, MemtoReg, RegDst, RegWrite, PCWriteCond, PCWrite, IorD;
-	wire [1:0] ALUOp, PCSource, ALUSrcA;
+	wire IRWrite, MemtoReg, RegWrite, PCWriteCond, PCWrite, IorD, ZeroNotZero;
+	wire [1:0] ALUOp, PCSource, ALUSrcA, RegDst;
 	wire [2:0] ALUSrcB;
 
 	// register file output wires
@@ -32,7 +32,7 @@ module mips_core(clk, rst, MemWrite, read_data, write_data, write_addr);
 	// ALU wires
 	wire [N-1:0] ALUOutput;
 	wire [N-1:0] ALU_SrcA_in, ALU_SrcB_in;
-	wire alu_zero;
+	wire alu_zero, alu_zero_notzero;
 	wire [3:0] ALU_control_sig;
 	
 	// Internal Wires
@@ -121,7 +121,8 @@ module mips_core(clk, rst, MemWrite, read_data, write_data, write_addr);
 		.PCWrite(PCWrite),
 		.IorD(IorD),
 		.Op_code(op_decoded),
-		.Funct(funct_decoded)
+		.Funct(funct_decoded),
+		.ZeroNotZero(ZeroNotZero)
 		);
 
 	five_to1_mux fiveto1_ALUb_MUX(
@@ -146,14 +147,22 @@ module mips_core(clk, rst, MemWrite, read_data, write_data, write_addr);
 	assign write_data = b_to_alusrcB_mux;
 
 	// logic for PC
-	assign AND_out = PCWriteCond & alu_zero;
+	assign alu_zero_notzero = ZeroNotZero ? !alu_zero : alu_zero;
+	assign AND_out = PCWriteCond & alu_zero_notzero;
 	assign PCWriteEn = AND_out | PCWrite;
 
 	// PC MUX
 	assign write_addr = IorD ? aluout_out : pc_out;
 
 	// reg dest mux
-	assign wr_addr = RegDst ? rd_decoded : rd_addr2;
+	//assign wr_addr = RegDst ? rd_decoded : rd_addr2;
+	three_to1_mux #(.N(5)) reg_dest_MUX(
+		.in0(rd_addr2),
+		.in1(rd_decoded),
+		.in2(32'd31),
+		.select(RegDst),
+		.out(wr_addr)
+		);
 
 	// mem to reg mux
 	assign wr_data = MemtoReg ? mdr_out : aluout_out;
