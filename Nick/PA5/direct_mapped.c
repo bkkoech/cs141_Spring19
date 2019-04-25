@@ -43,6 +43,8 @@ void dmc_store_word(direct_mapped_cache* dmc, void* addr, unsigned int val)
         dmc->dirty_bits[index] = true;
     }
     else {
+        //miss
+        ++dmc->cs.w_misses;
         // if not equal, need to evcit, check dirty bit
         if(dmc->dirty_bits[index] == true){
             // if dirty bit true, write to memory and overrwite
@@ -59,7 +61,6 @@ void dmc_store_word(direct_mapped_cache* dmc, void* addr, unsigned int val)
 
     // Update statistics
     ++dmc->cs.w_queries;
-    ++dmc->cs.w_misses;
 }
 
 unsigned int dmc_load_word(direct_mapped_cache* dmc, void* addr)
@@ -75,4 +76,5 @@ void dmc_free(direct_mapped_cache* dmc)
         free(dmc->cache[i]);
     }
     free(dmc);
+    printf("Freed\n");
 }
