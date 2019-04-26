@@ -22,7 +22,7 @@ direct_mapped_cache* dmc_init(main_memory* mm)
 static int addr_to_set(void* addr)
 {
     uint16_t result = ((int)addr >> MAIN_MEMORY_BLOCK_SIZE_LN);
-    result = result & (uint16_t)(MAIN_MEMORY_SIZE_LN-1);
+    result = result & (uint16_t)(DIRECT_MAPPED_NUM_SETS-1);
     return result;
 }
 
