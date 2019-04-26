@@ -68,3 +68,5 @@ xlnx_auto_0_xdb/
 xst/
 _ngo/
 _xmsgs/
+Final/PA5/.vscode/*
+Nick/PA5/.vscode/c_cpp_properties.json
