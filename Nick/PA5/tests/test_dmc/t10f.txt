@@ -31,6 +31,7 @@ Read from 0x9160: 1291320854
 MM: Read 32 bytes at 0x5e80.
 Wrote to 0x5e9c: 624352387
 
+MM: Wrote 32 bytes at 0x62e0.
 MM: Read 32 bytes at 0x2ae0.
 Wrote to 0x2af8: -579676450
 
@@ -46,6 +47,7 @@ Read from 0x5998: -1681079303
 MM: Read 32 bytes at 0xad80.
 Read from 0xad9c: 631116710
 
+MM: Wrote 32 bytes at 0x6c20.
 MM: Read 32 bytes at 0x7c20.
 Wrote to 0x7c24: 407468301
 
@@ -53,6 +55,6 @@ Wrote to 0x7c24: 407468301
 Write Hit Rate:		0% (0/10)
 Read Hit Rate:		0% (0/7)
 Total Hit Rate:		0% (0/17)
-Writes to Main Memory:	0
+Writes to Main Memory:	2
 Reads from Main Memory:	17
 *******************************************

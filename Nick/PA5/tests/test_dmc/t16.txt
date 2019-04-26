@@ -60,7 +60,6 @@ Read from 0x7558: 831343148
 
 Read from 0x755c: -165612351
 
-MM: Wrote 32 bytes at 0x74e0.
 MM: Read 32 bytes at 0x7560.
 Wrote to 0x7560: 418275292
 
@@ -78,7 +77,6 @@ Wrote to 0x7578: -1583828951
 
 Read from 0x757c: -238249524
 
-MM: Wrote 32 bytes at 0x7500.
 MM: Read 32 bytes at 0x7580.
 Wrote to 0x7580: 884684012
 
@@ -96,7 +94,6 @@ Wrote to 0x7598: -1047805606
 
 Read from 0x759c: -411266734
 
-MM: Wrote 32 bytes at 0x7520.
 MM: Read 32 bytes at 0x75a0.
 Wrote to 0x75a0: 302340343
 
@@ -114,7 +111,6 @@ Wrote to 0x75b8: -1974163997
 
 Wrote to 0x75bc: 811925917
 
-MM: Wrote 32 bytes at 0x7540.
 MM: Read 32 bytes at 0x75c0.
 Read from 0x75c0: 21054276
 
@@ -132,7 +128,6 @@ Read from 0x75d8: -642466046
 
 Read from 0x75dc: -571952422
 
-MM: Wrote 32 bytes at 0x7560.
 MM: Read 32 bytes at 0x75e0.
 Wrote to 0x75e0: -174387311
 
@@ -150,7 +145,6 @@ Wrote to 0x75f8: -544186755
 
 Wrote to 0x75fc: 1383544041
 
-MM: Wrote 32 bytes at 0x7580.
 MM: Read 32 bytes at 0x7600.
 Read from 0x7600: -1147501041
 
@@ -168,7 +162,6 @@ Read from 0x7618: 557530209
 
 Read from 0x761c: -452725022
 
-MM: Wrote 32 bytes at 0x75a0.
 MM: Read 32 bytes at 0x7620.
 Read from 0x7620: 390461754
 
@@ -186,7 +179,6 @@ Read from 0x7638: 1256945317
 
 Wrote to 0x763c: -804583830
 
-MM: Wrote 32 bytes at 0x75c0.
 MM: Read 32 bytes at 0x7640.
 Wrote to 0x7640: -40644223
 
@@ -204,7 +196,6 @@ Read from 0x7658: 2030573925
 
 Wrote to 0x765c: -1985453479
 
-MM: Wrote 32 bytes at 0x75e0.
 MM: Read 32 bytes at 0x7660.
 Read from 0x7660: -1643716596
 
@@ -222,7 +213,6 @@ Wrote to 0x7678: -212163110
 
 Wrote to 0x767c: 252807333
 
-MM: Wrote 32 bytes at 0x7600.
 MM: Read 32 bytes at 0x7680.
 Read from 0x7680: 151437364
 
@@ -240,7 +230,6 @@ Wrote to 0x7698: -1326628997
 
 Wrote to 0x769c: -589012592
 
-MM: Wrote 32 bytes at 0x7620.
 MM: Read 32 bytes at 0x76a0.
 Read from 0x76a0: -907137685
 
@@ -258,7 +247,6 @@ Wrote to 0x76b8: -750453847
 
 Read from 0x76bc: -1246198783
 
-MM: Wrote 32 bytes at 0x7640.
 MM: Read 32 bytes at 0x76c0.
 Wrote to 0x76c0: -52698575
 
@@ -276,7 +264,7 @@ Read from 0x76d8: 27570107
 
 Wrote to 0x76dc: 1437758981
 
-MM: Wrote 32 bytes at 0x7660.
+MM: Wrote 32 bytes at 0x74e0.
 MM: Read 32 bytes at 0x76e0.
 Wrote to 0x76e0: 2026771573
 
@@ -302,8 +290,6 @@ Read from 0x74f8: 798332767
 
 Read from 0x74fc: 1365943080
 
-MM: Wrote 32 bytes at 0x7680.
-MM: Read 32 bytes at 0x7500.
 Read from 0x7500: 804039019
 
 Read from 0x7504: -2144399252
@@ -320,8 +306,6 @@ Read from 0x7518: -496743370
 
 Read from 0x751c: -803295906
 
-MM: Wrote 32 bytes at 0x76a0.
-MM: Read 32 bytes at 0x7520.
 Read from 0x7520: 68610138
 
 Read from 0x7524: -298068457
@@ -338,8 +322,6 @@ Read from 0x7538: -1052234975
 
 Read from 0x753c: -410208486
 
-MM: Wrote 32 bytes at 0x76c0.
-MM: Read 32 bytes at 0x7540.
 Read from 0x7540: -407124091
 
 Read from 0x7544: -1391202996
@@ -356,7 +338,6 @@ Read from 0x7558: 831343148
 
 Read from 0x755c: -165612351
 
-MM: Read 32 bytes at 0x7560.
 Read from 0x7560: 418275292
 
 Read from 0x7564: 2007652463
@@ -373,7 +354,6 @@ Read from 0x7578: -1583828951
 
 Read from 0x757c: -238249524
 
-MM: Read 32 bytes at 0x7580.
 Read from 0x7580: 884684012
 
 Read from 0x7584: -1291808103
@@ -390,7 +370,6 @@ Read from 0x7598: -1047805606
 
 Read from 0x759c: -411266734
 
-MM: Read 32 bytes at 0x75a0.
 Read from 0x75a0: 302340343
 
 Read from 0x75a4: -1334682658
@@ -407,7 +386,6 @@ Read from 0x75b8: -1974163997
 
 Read from 0x75bc: 811925917
 
-MM: Read 32 bytes at 0x75c0.
 Read from 0x75c0: 21054276
 
 Read from 0x75c4: -451407990
@@ -424,7 +402,6 @@ Read from 0x75d8: -642466046
 
 Read from 0x75dc: -571952422
 
-MM: Read 32 bytes at 0x75e0.
 Read from 0x75e0: -174387311
 
 Read from 0x75e4: 1762331442
@@ -441,7 +418,6 @@ Read from 0x75f8: -544186755
 
 Read from 0x75fc: 1383544041
 
-MM: Read 32 bytes at 0x7600.
 Read from 0x7600: -1147501041
 
 Read from 0x7604: 1092029032
@@ -458,7 +434,6 @@ Read from 0x7618: 557530209
 
 Read from 0x761c: -452725022
 
-MM: Read 32 bytes at 0x7620.
 Read from 0x7620: 390461754
 
 Read from 0x7624: 500356726
@@ -475,7 +450,6 @@ Read from 0x7638: 1256945317
 
 Read from 0x763c: -804583830
 
-MM: Read 32 bytes at 0x7640.
 Read from 0x7640: -40644223
 
 Read from 0x7644: 339551681
@@ -492,7 +466,6 @@ Read from 0x7658: 2030573925
 
 Read from 0x765c: -1985453479
 
-MM: Read 32 bytes at 0x7660.
 Read from 0x7660: -1643716596
 
 Read from 0x7664: 2035563899
@@ -509,7 +482,6 @@ Read from 0x7678: -212163110
 
 Read from 0x767c: 252807333
 
-MM: Read 32 bytes at 0x7680.
 Read from 0x7680: 151437364
 
 Read from 0x7684: 1154368474
@@ -526,7 +498,6 @@ Read from 0x7698: -1326628997
 
 Read from 0x769c: -589012592
 
-MM: Read 32 bytes at 0x76a0.
 Read from 0x76a0: -907137685
 
 Read from 0x76a4: 1493693165
@@ -543,7 +514,6 @@ Read from 0x76b8: -750453847
 
 Read from 0x76bc: -1246198783
 
-MM: Read 32 bytes at 0x76c0.
 Read from 0x76c0: -52698575
 
 Read from 0x76c4: 140468631
@@ -575,8 +545,8 @@ Read from 0x76f4: 2140617457
 
 *******************************************
 Write Hit Rate:		85% (53/62)
-Read Hit Rate:		88% (175/200)
-Total Hit Rate:		87% (228/262)
-Writes to Main Memory:	17
-Reads from Main Memory:	34
+Read Hit Rate:		95% (190/200)
+Total Hit Rate:		93% (243/262)
+Writes to Main Memory:	2
+Reads from Main Memory:	19
 *******************************************
