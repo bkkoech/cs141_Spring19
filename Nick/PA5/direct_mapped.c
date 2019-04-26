@@ -7,7 +7,6 @@
 
 direct_mapped_cache* dmc_init(main_memory* mm)
 {
-    // TODO
     direct_mapped_cache* result = malloc(sizeof(direct_mapped_cache));
     result->mm = mm;
     result->cs = cs_init();
