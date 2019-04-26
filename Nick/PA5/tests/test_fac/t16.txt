@@ -1,0 +1,343 @@
+Wrote to 0x74ec: -1122623626
+
+Read from 0x74f0: 0
+
+Read from 0x74f4: 0
+
+Wrote to 0x74f8: 798332767
+
+Wrote to 0x74fc: 1365943080
+
+Read from 0x7500: 0
+
+Wrote to 0x7504: -2144399252
+
+Wrote to 0x7508: 984078905
+
+Read from 0x750c: 0
+
+Read from 0x7510: 0
+
+Wrote to 0x7514: 1990027840
+
+Wrote to 0x7518: -496743370
+
+Read from 0x751c: 0
+
+Read from 0x7520: 0
+
+Read from 0x7524: 0
+
+Wrote to 0x7528: 1589377171
+
+Read from 0x752c: 0
+
+Wrote to 0x7530: 358432382
+
+Read from 0x7534: 0
+
+Wrote to 0x7538: -1052234975
+
+Wrote to 0x753c: -410208486
+
+Wrote to 0x7540: -407124091
+
+Wrote to 0x7544: -1391202996
+
+Read from 0x7548: 0
+
+Read from 0x754c: 0
+
+Read from 0x7550: 0
+
+Wrote to 0x7554: -81114375
+
+Read from 0x7558: 0
+
+Read from 0x755c: 0
+
+Wrote to 0x7560: 418275292
+
+Wrote to 0x7564: 2007652463
+
+Read from 0x7568: 0
+
+Read from 0x756c: 0
+
+Read from 0x7570: 0
+
+Read from 0x7574: 0
+
+Wrote to 0x7578: -1583828951
+
+Read from 0x757c: 0
+
+Wrote to 0x7580: 884684012
+
+Wrote to 0x7584: -1291808103
+
+Read from 0x7588: 0
+
+Read from 0x758c: 0
+
+Read from 0x7590: 0
+
+Wrote to 0x7594: 966691230
+
+Wrote to 0x7598: -1047805606
+
+Read from 0x759c: 0
+
+Wrote to 0x75a0: 302340343
+
+Wrote to 0x75a4: -1334682658
+
+Read from 0x75a8: 0
+
+Wrote to 0x75ac: -332994872
+
+Wrote to 0x75b0: -168212815
+
+Read from 0x75b4: 0
+
+Wrote to 0x75b8: -1974163997
+
+Wrote to 0x75bc: 811925917
+
+Read from 0x75c0: 0
+
+Read from 0x75c4: 0
+
+Wrote to 0x75c8: -1443381987
+
+Wrote to 0x75cc: -1968448182
+
+Read from 0x75d0: 0
+
+Read from 0x75d4: 0
+
+Read from 0x75d8: 0
+
+Read from 0x75dc: 0
+
+Wrote to 0x75e0: -174387311
+
+Read from 0x75e4: 0
+
+Read from 0x75e8: 0
+
+Wrote to 0x75ec: -230969104
+
+Wrote to 0x75f0: -75783899
+
+Read from 0x75f4: 0
+
+Wrote to 0x75f8: -544186755
+
+Wrote to 0x75fc: 1383544041
+
+Read from 0x7600: 0
+
+Read from 0x7604: 0
+
+Wrote to 0x7608: -683689930
+
+Read from 0x760c: 0
+
+Read from 0x7610: 0
+
+Wrote to 0x7614: -1546909832
+
+Read from 0x7618: 0
+
+Read from 0x761c: 0
+
+Read from 0x7620: 0
+
+Read from 0x7624: 0
+
+Wrote to 0x7628: 2089301584
+
+Read from 0x762c: 0
+
+Wrote to 0x7630: 55189903
+
+Wrote to 0x7634: -130973802
+
+Read from 0x7638: 0
+
+Wrote to 0x763c: -804583830
+
+Wrote to 0x7640: -40644223
+
+Read from 0x7644: 0
+
+Read from 0x7648: 0
+
+Read from 0x764c: 0
+
+Wrote to 0x7650: -1401849635
+
+Read from 0x7654: 0
+
+Read from 0x7658: 0
+
+Wrote to 0x765c: -1985453479
+
+Read from 0x7660: 0
+
+Wrote to 0x7664: 2035563899
+
+Wrote to 0x7668: -1859784698
+
+Wrote to 0x766c: -1914974601
+
+Wrote to 0x7670: 2045948403
+
+Read from 0x7674: 0
+
+Wrote to 0x7678: -212163110
+
+Wrote to 0x767c: 252807333
+
+Read from 0x7680: 0
+
+Read from 0x7684: 0
+
+Read from 0x7688: 0
+
+Read from 0x768c: 0
+
+Read from 0x7690: 0
+
+Wrote to 0x7694: 1488659166
+
+Wrote to 0x7698: -1326628997
+
+Wrote to 0x769c: -589012592
+
+Read from 0x76a0: 0
+
+Read from 0x76a4: 0
+
+Read from 0x76a8: 0
+
+Wrote to 0x76ac: -1755822772
+
+Read from 0x76b0: 0
+
+Read from 0x76b4: 0
+
+Wrote to 0x76b8: -750453847
+
+Read from 0x76bc: 0
+
+Wrote to 0x76c0: -52698575
+
+Wrote to 0x76c4: 140468631
+
+Wrote to 0x76c8: -2126989296
+
+Read from 0x76cc: 0
+
+Read from 0x76d0: 0
+
+Read from 0x76d4: 0
+
+Read from 0x76d8: 0
+
+Wrote to 0x76dc: 1437758981
+
+Wrote to 0x76e0: 2026771573
+
+Read from 0x76e4: 0
+
+Read from 0x76e8: 0
+
+Wrote to 0x76ec: -47289043
+
+Wrote to 0x76f0: -1390163610
+
+Wrote to 0x76f4: 2140617457
+
+Read from 0x74ec: 0
+
+Read from 0x74f0: 0
+
+Read from 0x74f4: 0
+
+Read from 0x74f8: 0
+
+Read from 0x74fc: 0
+
+Read from 0x7500: 0
+
+Read from 0x7504: 0
+
+Read from 0x7508: 0
+
+Read from 0x750c: 0
+
+Read from 0x7510: 0
+
+Read from 0x7514: 0
+
+Read from 0x7518: 0
+
+Read from 0x751c: 0
+
+Read from 0x7520: 0
+
+Read from 0x7524: 0
+
+Read from 0x7528: 0
+
+Read from 0x752c: 0
+
+Read from 0x7530: 0
+
+Read from 0x7534: 0
+
+Read from 0x7538: 0
+
+Read from 0x753c: 0
+
+Read from 0x7540: 0
+
+Read from 0x7544: 0
+
+Read from 0x7548: 0
+
+Read from 0x754c: 0
+
+Read from 0x7550: 0
+
+Read from 0x7554: 0
+
+Read from 0x7558: 0
+
+Read from 0x755c: 0
+
+Read from 0x7560: 0
+
+Read from 0x7564: 0
+
+Read from 0x7568: 0
+
+Read from 0x756c: 0
+
+Read from 0x7570: 0
+
+Read from 0x7574: 0
+
+Read from 0x7578: 0
+
+Read from 0x757c: 0
+
+Read from 0x7580: 0
+
+Read from 0x7584: 0
+
+Read from 0x7588: 0
+
+Read f

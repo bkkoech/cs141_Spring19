@@ -11,9 +11,11 @@ direct_mapped_cache* dmc_init(main_memory* mm)
     direct_mapped_cache* result = malloc(sizeof(direct_mapped_cache));
     result->mm = mm;
     result->cs = cs_init();
-    // set dirty bits to 0
+
+    // set dirty bits to 0, init memory_blocks
     for(int i = 0; i < DIRECT_MAPPED_NUM_SETS; i++){ 
         result->dirty_bits[i] = false;
+        result->cache[i] = NULL;
     }
     return result;
 }
@@ -49,17 +51,20 @@ void dmc_store_word(direct_mapped_cache* dmc, void* addr, unsigned int val)
         //miss
         ++dmc->cs.w_misses;
         // if not equal, need to evcit, check dirty bit
-        if(dmc->dirty_bits[index] == true){
+        if(cacheline != NULL && dmc->dirty_bits[index] == true){
             // if dirty bit true, write to memory and overrwite
-            mm_write(dmc->mm, mb_start_addr, cacheline);
-            unsigned int* mb_addr = cacheline->data + addr_offt;
-            *mb_addr = val;
+            mm_write(dmc->mm, cacheline->start_addr, cacheline);
         }
-        else {
-            // if dirty bit false, overrwite
-            unsigned int* mb_addr = cacheline->data + addr_offt;
-            *mb_addr = val;
+        // if dirty bit false, overrwite
+        if(cacheline != NULL){
+            mb_free(cacheline);
         }
+        cacheline = mm_read(dmc->mm, mb_start_addr);
+        dmc->dirty_bits[index] = false;
+        dmc->cache[index] = cacheline;
+        unsigned int* mb_addr = cacheline->data + addr_offt;
+        *mb_addr = val;
+
     }
 
     // Update statistics
@@ -83,7 +88,7 @@ unsigned int dmc_load_word(direct_mapped_cache* dmc, void* addr)
     memory_block* cacheline = dmc->cache[index];    
 
     // Check addresses are equal
-    // checxk for nul
+    // check for nul
     if(cacheline != NULL && cacheline->start_addr == mb_start_addr){
         // hit if they are
         mb_addr = cacheline->data + addr_offt;
@@ -91,28 +96,35 @@ unsigned int dmc_load_word(direct_mapped_cache* dmc, void* addr)
     }
     else {
         // miss if not equal
-        ++dmc->cs.w_misses;
+        ++dmc->cs.r_misses;
         // check dirty bit
-        if (dmc->dirty_bits[index] == true){
+        if (cacheline != NULL && dmc->dirty_bits[index] == true){
             // if dirty, writeback
-            mm_write(dmc->mm, mb_start_addr, cacheline);
-            dmc->dirty_bits[index] = false;
+            mm_write(dmc->mm, cacheline->start_addr, cacheline);
         }
 
         // evect via overrwite
-        mb_free(cacheline);
+        if(cacheline != NULL){
+            mb_free(cacheline);
+        }
         cacheline = mm_read(dmc->mm, mb_start_addr);
+        dmc->dirty_bits[index] = false;
+        dmc->cache[index] = cacheline;
         mb_addr = cacheline->data + addr_offt;
         result = *mb_addr;
     }
+
+    // Update statistics
+    ++dmc->cs.r_queries;
     return result;
 }
 
 void dmc_free(direct_mapped_cache* dmc)
 {
     for(int i = 0; i < DIRECT_MAPPED_NUM_SETS; i++){
-        mb_free(dmc->cache[i]);
+        if (dmc->cache[i] != NULL){
+            mb_free(dmc->cache[i]);
+        }
     }
     free(dmc);
-    printf("Freed\n");
 }

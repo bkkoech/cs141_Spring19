@@ -1,0 +1,347 @@
+Read from 0xed98: 0
+
+Wrote to 0xed9c: -1195024245
+
+Wrote to 0xeda0: -385424985
+
+Read from 0xeda4: 0
+
+Read from 0xeda8: 0
+
+Read from 0xedac: 0
+
+Wrote to 0xedb0: -1508752469
+
+Read from 0xedb4: 0
+
+Wrote to 0xedb8: 94975538
+
+Read from 0xedbc: 0
+
+Read from 0xedc0: 0
+
+Read from 0xedc4: 0
+
+Read from 0xedc8: 0
+
+Read from 0xedcc: 0
+
+Read from 0xedd0: 0
+
+Wrote to 0xedd4: -1997833139
+
+Read from 0xedd8: 0
+
+Wrote to 0xeddc: -454703030
+
+Read from 0xede0: 0
+
+Read from 0xede4: 0
+
+Wrote to 0xede8: 1130857300
+
+Read from 0xedec: 0
+
+Read from 0xedf0: 0
+
+Read from 0xedf4: 0
+
+Wrote to 0xedf8: 138252352
+
+Wrote to 0xedfc: 1647004822
+
+Read from 0xee00: 0
+
+Wrote to 0xee04: 10069325
+
+Read from 0xee08: 0
+
+Wrote to 0xee0c: 337561372
+
+Read from 0xee10: 0
+
+Read from 0xee14: 0
+
+Wrote to 0xee18: 1264490922
+
+Read from 0xee1c: 0
+
+Read from 0xee20: 0
+
+Wrote to 0xee24: 995290068
+
+Read from 0xee28: 0
+
+Wrote to 0xee2c: 1143980901
+
+Read from 0xee30: 0
+
+Read from 0xee34: 0
+
+Read from 0xee38: 0
+
+Read from 0xee3c: 0
+
+Read from 0xee40: 0
+
+Read from 0xee44: 0
+
+Read from 0xee48: 0
+
+Read from 0xee4c: 0
+
+Read from 0xee50: 0
+
+Wrote to 0xee54: -1738033170
+
+Wrote to 0xee58: 1662058316
+
+Wrote to 0xee5c: -340450425
+
+Wrote to 0xee60: -396495218
+
+Wrote to 0xee64: -1297078309
+
+Wrote to 0xee68: -144884729
+
+Read from 0xee6c: 0
+
+Read from 0xee70: 0
+
+Read from 0xee74: 0
+
+Read from 0xee78: 0
+
+Read from 0xee7c: 0
+
+Wrote to 0xee80: 1429643244
+
+Read from 0xee84: 0
+
+Read from 0xee88: 0
+
+Wrote to 0xee8c: -660932877
+
+Wrote to 0xee90: 251482399
+
+Wrote to 0xee94: -1913540715
+
+Read from 0xee98: 0
+
+Wrote to 0xee9c: 1902446103
+
+Read from 0xeea0: 0
+
+Wrote to 0xeea4: -86635104
+
+Read from 0xeea8: 0
+
+Wrote to 0xeeac: -1944965748
+
+Read from 0xeeb0: 0
+
+Read from 0xeeb4: 0
+
+Read from 0xeeb8: 0
+
+Wrote to 0xeebc: 1697345299
+
+Wrote to 0xeec0: 1892119061
+
+Wrote to 0xeec4: 324340562
+
+Read from 0xeec8: 0
+
+Read from 0xeecc: 0
+
+Wrote to 0xeed0: 1018621339
+
+Read from 0xeed4: 0
+
+Read from 0xeed8: 0
+
+Wrote to 0xeedc: -1202914037
+
+Read from 0xeee0: 0
+
+Read from 0xeee4: 0
+
+Wrote to 0xeee8: -310709029
+
+Read from 0xeeec: 0
+
+Read from 0xeef0: 0
+
+Read from 0xeef4: 0
+
+Wrote to 0xeef8: 1536646338
+
+Read from 0xeefc: 0
+
+Read from 0xef00: 0
+
+Wrote to 0xef04: -409481891
+
+Wrote to 0xef08: 827416093
+
+Read from 0xef0c: 0
+
+Wrote to 0xef10: 241588046
+
+Wrote to 0xef14: 1260209385
+
+Wrote to 0xef18: -891143474
+
+Read from 0xef1c: 0
+
+Read from 0xef20: 0
+
+Read from 0xef24: 0
+
+Wrote to 0xef28: -1825039644
+
+Wrote to 0xef2c: 1577122585
+
+Read from 0xef30: 0
+
+Wrote to 0xef34: 508836257
+
+Wrote to 0xef38: -214887961
+
+Read from 0xef3c: 0
+
+Wrote to 0xef40: -2137952563
+
+Wrote to 0xef44: 1034183797
+
+Wrote to 0xef48: 646983685
+
+Read from 0xef4c: 0
+
+Wrote to 0xef50: -360722232
+
+Wrote to 0xef54: -1601708169
+
+Read from 0xef58: 0
+
+Read from 0xef5c: 0
+
+Wrote to 0xef60: 516088771
+
+Read from 0xef64: 0
+
+Read from 0xef68: 0
+
+Wrote to 0xef6c: -1434778929
+
+Read from 0xef70: 0
+
+Read from 0xef74: 0
+
+Wrote to 0xef78: 1145472726
+
+Read from 0xef7c: 0
+
+Wrote to 0xef80: -2089537565
+
+Wrote to 0xef84: 1323038895
+
+Read from 0xef88: 0
+
+Wrote to 0xef8c: 798105975
+
+Read from 0xef90: 0
+
+Read from 0xef94: 0
+
+Read from 0xef98: 0
+
+Wrote to 0xef9c: 1114546716
+
+Wrote to 0xefa0: -1088843092
+
+Read from 0xefa0: 0
+
+Read from 0xef9c: 0
+
+Read from 0xef98: 0
+
+Read from 0xef94: 0
+
+Read from 0xef90: 0
+
+Read from 0xef8c: 0
+
+Read from 0xef88: 0
+
+Read from 0xef84: 0
+
+Read from 0xef80: 0
+
+Read from 0xef7c: 0
+
+Read from 0xef78: 0
+
+Read from 0xef74: 0
+
+Read from 0xef70: 0
+
+Read from 0xef6c: 0
+
+Read from 0xef68: 0
+
+Read from 0xef64: 0
+
+Read from 0xef60: 0
+
+Read from 0xef5c: 0
+
+Read from 0xef58: 0
+
+Read from 0xef54: 0
+
+Read from 0xef50: 0
+
+Read from 0xef4c: 0
+
+Read from 0xef48: 0
+
+Read from 0xef44: 0
+
+Read from 0xef40: 0
+
+Read from 0xef3c: 0
+
+Read from 0xef38: 0
+
+Read from 0xef34: 0
+
+Read from 0xef30: 0
+
+Read from 0xef2c: 0
+
+Read from 0xef28: 0
+
+Read from 0xef24: 0
+
+Read from 0xef20: 0
+
+Read from 0xef1c: 0
+
+Read from 0xef18: 0
+
+Read from 0xef14: 0
+
+Read from 0xef10: 0
+
+Read from 0xef0c: 0
+
+Read from 0xef08: 0
+
+Read from 0xef04: 0
+
+Read from 0xef00: 0
+
+Read from 0xeefc: 0
+
+Read from 0xeef8:
