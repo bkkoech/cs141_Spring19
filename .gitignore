@@ -44,6 +44,8 @@
 *_summary.xml
 *_usage.xml
 *_xst.xrpt
+*.ipch
+*.json
 
 # iMPACT generated files
 _impactbatch.log
@@ -70,3 +72,5 @@ _ngo/
 _xmsgs/
 Final/PA5/.vscode/*
 Nick/PA5/.vscode/c_cpp_properties.json
+Nick/PA5/.vscode/ipch/7dd6b6804b96db23/simple.ipch
+Nick/PA5/.vscode/launch.json
