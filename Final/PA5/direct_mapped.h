@@ -8,11 +8,11 @@
 #define DIRECT_MAPPED_NUM_SETS_LN 4
 
 typedef struct direct_mapped_cache
-{
+{// TODO: add anything you need
     main_memory* mm;
     cache_stats cs;
-    
-    // TODO: add anything you need
+    memory_block* cache[DIRECT_MAPPED_NUM_SETS];
+    int dirty_bits[DIRECT_MAPPED_NUM_SETS];
 } direct_mapped_cache;
 
 // Do not edit below this line

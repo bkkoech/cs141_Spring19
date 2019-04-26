@@ -11,8 +11,9 @@ typedef struct fully_associative_cache
 {
     main_memory* mm;
     cache_stats cs;
-    
-    // TODO: add anything you need
+    memory_block* cache[FULLY_ASSOCIATIVE_NUM_WAYS];
+    int dirty_bits[FULLY_ASSOCIATIVE_NUM_WAYS];
+    int lru_count[FULLY_ASSOCIATIVE_NUM_WAYS];
 } fully_associative_cache;
 
 // Do not edit below this line
