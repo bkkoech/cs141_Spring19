@@ -29,7 +29,8 @@ static void mark_as_used(fully_associative_cache* fac, int way)
             fac->lru_count[i] = 0;
         }
         else {
-            fac->lru_count[i]++;
+            if (fac->lru_count[i] != 2147483646) // check overflow
+                fac->lru_count[i]++;
         }
     }
 }
