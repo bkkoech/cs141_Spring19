@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <math.h>
 
 #include "main_memory.h"
 #include "simple.h"
@@ -19,8 +20,17 @@ void print_stats(main_memory* mm, cache_stats cs)
     int w_hits = cs.w_queries - cs.w_misses;
     int r_hits = cs.r_queries - cs.r_misses;
     
-    double whr = (double) w_hits / (double) cs.w_queries * 100;
-    double rhr = (double) r_hits / (double) cs.r_queries * 100;
+    double whr, rhr;
+    if (cs.w_queries == 0) {
+        whr = NAN;
+    } else {
+        whr = (double) w_hits / (double) cs.w_queries * 100;
+    }
+    if (cs.r_queries == 0) {
+        rhr = NAN;
+    } else {
+        rhr = (double) r_hits / (double) cs.r_queries * 100;
+    }
 
     int t_hits = w_hits + r_hits;
     unsigned int t_queries = cs.w_queries + cs.r_queries;
