@@ -1,0 +1,15 @@
+dmc_load(addr){
+	// Look at the set, % N-SETS	
+	setn = address % N_SETS
+	if(cache has addr at setn){
+		return cache[setn] ->data
+	}else{
+
+	} data = main_memory -> load(addr)
+	if(cache[setn] -> dirty){
+		main_memory -> write(cache[setn], -> start_addr, cache[setn]-> data )
+	}
+	cache[setn] = data
+	return data
+
+}
