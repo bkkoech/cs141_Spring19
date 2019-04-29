@@ -17,7 +17,7 @@ set_associative_cache* sac_init(main_memory* mm)
         for (int j = 0; j < SET_ASSOCIATIVE_NUM_WAYS; j++){
             result->cache[i][j] = NULL;
             result->dirty_bits[i][j] = false;
-            result->lru_count[i][j] = 0;
+            result->lru_count[i][j] = j;
         }
     }
     return result;
@@ -32,32 +32,23 @@ static int addr_to_set(void* addr)
 
 static void mark_as_used(set_associative_cache* sac, int set, int way)
 {
-    for (int i = 0; i < SET_ASSOCIATIVE_NUM_SETS; i++){
-        for (int j = 0; j < SET_ASSOCIATIVE_NUM_WAYS; j++){
-            if (i == set && j == way){
-                sac->lru_count[i][j] = 0;
-            }
-            else {
-                if (sac->lru_count[i][j] != 2147483646) // check overflow
-                    sac->lru_count[i][j]++;
-            }
+    int index = 0;
+    // find index of way 
+    for (int j = 0; j < SET_ASSOCIATIVE_NUM_WAYS; j++){
+        if (sac->lru_count[set][j] == way){
+            index = j;
         }
     }
+    // move way to back
+    for (int i = index; i < SET_ASSOCIATIVE_NUM_WAYS-1; i++){
+        sac->lru_count[set][i] = sac->lru_count[set][i+1];
+    }
+    sac->lru_count[set][SET_ASSOCIATIVE_NUM_WAYS-1] = way;
 }
 
 static int lru(set_associative_cache* sac, int set)
 {
-    // return the way of the lru
-    int lru = 0;
-    int result = 0;
-
-    for (int i = 0; i < SET_ASSOCIATIVE_NUM_WAYS; i++){
-        if (lru < sac->lru_count[set][i]){
-            lru = sac->lru_count[set][i];
-            result = i;
-        }
-    }
-    return result;
+    return sac->lru_count[set][0];
 }
 
 void sac_store_word(set_associative_cache* sac, void* addr, unsigned int val)

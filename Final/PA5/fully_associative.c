@@ -15,7 +15,7 @@ fully_associative_cache* fac_init(main_memory* mm)
     for(int i = 0; i < FULLY_ASSOCIATIVE_NUM_WAYS; i++){ 
         result->dirty_bits[i] = false;
         result->cache[i] = NULL;
-        result->lru_count[i] = 0;
+        result->lru_count[i] = i;
     }
     return result;
 }
@@ -23,31 +23,23 @@ fully_associative_cache* fac_init(main_memory* mm)
 
 static void mark_as_used(fully_associative_cache* fac, int way)
 {
-    // set the lru_count
-    for (int i = 0; i < FULLY_ASSOCIATIVE_NUM_WAYS; i++){
-        if (i == way){
-            fac->lru_count[i] = 0;
-        }
-        else {
-            if (fac->lru_count[i] != 2147483646) // check overflow
-                fac->lru_count[i]++;
+    int index = 0;
+    // find index of way
+    for (int i=0; i < FULLY_ASSOCIATIVE_NUM_WAYS; i++){
+        if (fac->lru_count[i] == way){
+            index = i;
         }
     }
+    // move way to back
+    for (int i = index; i < FULLY_ASSOCIATIVE_NUM_WAYS-1; i++){
+        fac->lru_count[i] = fac->lru_count[i+1];
+    }
+    fac->lru_count[FULLY_ASSOCIATIVE_NUM_WAYS-1] = way;
 }
 
 static int lru(fully_associative_cache* fac)
 {
-    // return the way of the lru
-    int lru = 0;
-    int result = 0;
-
-    for (int i = 0; i < FULLY_ASSOCIATIVE_NUM_WAYS; i++){
-        if (lru < fac->lru_count[i]){
-            lru = fac->lru_count[i];
-            result = i;
-        }
-    }
-    return result;
+    return fac->lru_count[0];
 }
 
 
