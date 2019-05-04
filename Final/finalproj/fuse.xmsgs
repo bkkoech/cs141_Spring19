@@ -5,13 +5,13 @@
      behavior or data corruption.  It is strongly advised that
      users do not edit the contents of this file. -->
 <messages>
-<msg type="warning" file="HDLCompiler" num="1016" delta="unknown" >"Z:/CS141 - Computer Architecture/cs141_Spring19/Final/PA4 pt1/test_mips_multicycle.v" Line 29: Port <arg fmt="%s" index="1">error</arg> is not connected to this instance
+<msg type="warning" file="HDLCompiler" num="1016" delta="unknown" >"Z:/CS141 - Computer Architecture/cs141_Spring19/Final/finalproj/test_mips_multicycle.v" Line 29: Port <arg fmt="%s" index="1">error</arg> is not connected to this instance
 </msg>
 
-<msg type="warning" file="HDLCompiler" num="1016" delta="unknown" >"Z:/CS141 - Computer Architecture/cs141_Spring19/Final/PA4 pt1/MIPS_Core.v" Line 88: Port <arg fmt="%s" index="1">equal</arg> is not connected to this instance
+<msg type="warning" file="HDLCompiler" num="1016" delta="unknown" >"Z:/CS141 - Computer Architecture/cs141_Spring19/Final/finalproj/MIPS_Core.v" Line 88: Port <arg fmt="%s" index="1">equal</arg> is not connected to this instance
 </msg>
 
-<msg type="warning" file="HDLCompiler" num="189" delta="unknown" >"Z:/CS141 - Computer Architecture/cs141_Spring19/Final/PA4 pt1/MIPS_Core.v" Line 162: Size mismatch in connection of port &lt;<arg fmt="%s" index="3">in2</arg>&gt;. Formal port size is <arg fmt="%d" index="2">5</arg>-bit while actual signal size is <arg fmt="%d" index="1">32</arg>-bit.
+<msg type="warning" file="HDLCompiler" num="189" delta="unknown" >"Z:/CS141 - Computer Architecture/cs141_Spring19/Final/finalproj/MIPS_Core.v" Line 162: Size mismatch in connection of port &lt;<arg fmt="%s" index="3">in2</arg>&gt;. Formal port size is <arg fmt="%d" index="2">5</arg>-bit while actual signal size is <arg fmt="%d" index="1">32</arg>-bit.
 </msg>
 
 </messages>

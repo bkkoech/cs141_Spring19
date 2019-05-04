@@ -29,7 +29,7 @@ def dec_to_bin(value, nbits):
   return value
 
 # List of all R-type instructions.
-rtypes = ['add', 'sub', 'and', 'or', 'xor', 'nor', 'sll', 'sra', 'srl', 'slt', 'jr']
+rtypes = ['add', 'sub', 'and', 'or', 'xor', 'nor', 'sll', 'sra', 'srl', 'slt', 'jr', 'mul']
 
 op_codes = {
   'addi' : dec_to_bin(8,6),

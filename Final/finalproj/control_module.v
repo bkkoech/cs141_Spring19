@@ -154,7 +154,7 @@ module control_module(clk, rst, MemWrite, IRWrite, MemtoReg, RegDst, RegWrite, Z
 						// set outputs
 
 						// handling shamt for shifts
-						if (Funct == `FUNCT_SLL || Funct == `FUNCT_SRL || Funct == `FUNCT_SRA ) begin
+						if (Funct == `FUNCT_SLL || (Funct == `FUNCT_SRL && Op_code == `RTYPE) || Funct == `FUNCT_SRA ) begin
 							ALUSrcB = 3'b100;
 							ALUSrcA = 2'b10;
 						end
