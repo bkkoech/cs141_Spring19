@@ -120,7 +120,7 @@ module control_module(clk, rst, MemWrite, IRWrite, MemtoReg, RegDst, RegWrite, Z
 						
 						//check value of inputs to determine next state
 						// if R-type
-						if (Op_code == `RTYPE) begin
+						if (Op_code == `RTYPE || Op_code == `MUL) begin
 							next_state = `EXECUTE_R_STATE;
 						end
 						//J types
@@ -170,7 +170,14 @@ module control_module(clk, rst, MemWrite, IRWrite, MemtoReg, RegDst, RegWrite, Z
 						end
 						
 						// MULTIPLEXER SELECTS:
-						ALUOp = 2'b10;
+						// handle MUL
+						if (Op_code == `RTYPE) begin
+							ALUOp = 2'b10;
+						end
+						else begin
+							ALUOp = 2'b11;
+						end
+						
 						ZeroNotZero = 0;
 						//dont cares
 						IorD = 0;

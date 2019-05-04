@@ -53,6 +53,7 @@ module alu_control(ALUOp, ALUControl, funct, op_code);
 				`ANDI	: alu_output = `ALU_OP_AND;
 				`ORI	: alu_output = `ALU_OP_OR;
 				`XORI	: alu_output = `ALU_OP_XOR;
+				`MUL 	: alu_output = `ALU_OP_MUL;
 				default : alu_output = 0;
 			endcase
 		end

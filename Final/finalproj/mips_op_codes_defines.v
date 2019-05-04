@@ -13,5 +13,6 @@
 `define XORI 6'd14
 `define LW 6'd35
 `define SW 6'd43
+`define MUL 6'd28
 
 `endif

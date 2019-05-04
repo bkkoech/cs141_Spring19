@@ -12,5 +12,6 @@
 `define FUNCT_XOR 6'd38
 `define FUNCT_NOR 6'd39
 `define FUNCT_SLT 6'd42
+`define FUNCT_MUL 6'd2 // NOTE: need to check op_code as well
 
 `endif
