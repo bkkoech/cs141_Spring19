@@ -6,7 +6,7 @@
 #    python assembler_template.py [asm file]
 
 import sys, re
-DEBUG = False
+DEBUG = True
 
 def bin_to_hex(x):
   y = hex(int(x,2))[2:]
@@ -156,6 +156,7 @@ def main():
       if '#' in line:
         line = line[0:line.find('#')]
 
+
       # We'll get you started here with line_count.
       line_attr['line_number'] = line_count
 
@@ -170,6 +171,10 @@ def main():
       
       # split by white spaces
       line = line.split()
+
+      # skip blank lines
+      if line == []:
+        break
 
       # store instructions
       line_attr['instruction'] = line[0]
