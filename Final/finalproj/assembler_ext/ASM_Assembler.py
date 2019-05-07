@@ -6,7 +6,7 @@
 #    python assembler_template.py [asm file]
 
 import sys, re
-DEBUG = True
+DEBUG = False
 
 def bin_to_hex(x):
   y = hex(int(x,2))[2:]
@@ -173,20 +173,18 @@ def main():
       line = line.split()
 
       # skip blank lines
-      if line == []:
-        break
+      if line != []:
+        # store instructions
+        line_attr['instruction'] = line[0]
 
-      # store instructions
-      line_attr['instruction'] = line[0]
+        # store arguments 
+        arguments = line[1:]
+        for i in range(len(arguments)):
+          # reg0 reg1 etc
+          line_attr['arg' + str(i)] = arguments[i]
 
-      # store arguments 
-      arguments = line[1:]
-      for i in range(len(arguments)):
-        # reg0 reg1 etc
-        line_attr['arg' + str(i)] = arguments[i]
-
-      # Finally, add this dict to the complete list of instructions.
-      parsed_lines.append(line_attr)
+        # Finally, add this dict to the complete list of instructions.
+        parsed_lines.append(line_attr)
   f.close()
 
   if DEBUG:
